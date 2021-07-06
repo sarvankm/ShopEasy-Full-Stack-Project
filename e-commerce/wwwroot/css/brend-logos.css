@@ -1,0 +1,75 @@
+.brendlogocontainer {
+  margin-top: 120px;
+  overflow: hidden; }
+  .brendlogocontainer .foranm {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    animation: moveSlideshow 30s linear infinite; }
+  .brendlogocontainer .logoline {
+    display: flex; }
+    .brendlogocontainer .logoline img {
+      padding: 40px 60px; }
+
+.sideline {
+  width: 1px;
+  height: 100%;
+  background-color: #9498a6; }
+
+@keyframes moveSlideshow {
+  0% {
+    left: 0%;
+    top: 0; }
+  100% {
+    left: -193.9%;
+    top: 0; } }
+
+@keyframes moveSlideshow-res1 {
+  0% {
+    left: 0%;
+    top: 0; }
+  100% {
+    left: -296.9%;
+    top: 0; } }
+
+@keyframes moveSlideshow-res2 {
+  0% {
+    left: 0%;
+    top: 0; }
+  100% {
+    left: -383.9%;
+    top: 0; } }
+
+@keyframes moveSlideshow-res3 {
+  0% {
+    left: 0%;
+    top: 0; }
+  100% {
+    left: -517.9%;
+    top: 0; } }
+
+@keyframes moveSlideshow-res4 {
+  0% {
+    left: 0%;
+    top: 0; }
+  100% {
+    left: -817.9%;
+    top: 0; } }
+
+@media only screen and (max-width: 992px) {
+  .brendlogocontainer .foranm {
+    animation: moveSlideshow-res1 30s linear infinite; } }
+
+@media only screen and (max-width: 768px) {
+  .brendlogocontainer .foranm {
+    animation: moveSlideshow-res2 5s linear infinite; } }
+
+@media only screen and (max-width: 568px) {
+  .brendlogocontainer .foranm {
+    animation: moveSlideshow-res3 10s linear infinite; } }
+
+@media only screen and (max-width: 360px) {
+  .brendlogocontainer .foranm {
+    animation: moveSlideshow-res4 10s linear infinite; } }

@@ -1,0 +1,218 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div style="padding: 20px;">
+    <div class="carouselcontainer">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (Slider item in Model.Sliders)
+                {
+                    <div class="carousel-item @item.ClassName">
+                        <a href="@item.Url">
+                            <img src="~/img/@item.Image" class="d-block w-100" alt="..." />
+                        </a>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="categorycontainer">
+    <div class="category">
+        <span class="icon-mobile"></span>
+        <p>Smartfon və Planşetlər</p>
+    </div>
+    <div class="category">
+        <span class="icon-washingmachine"></span>
+        <p>Böyük məişət texnikası</p>
+    </div>
+    <div class="category">
+        <span class="icon-display1"></span>
+        <p>Tv və Audio Sistemlər,Əyləncə</p>
+    </div>
+    <div class="category">
+        <span class="icon-laptop"></span>
+        <p>Komputer və Ofis Avadanlığı</p>
+    </div>
+    <div class="category">
+        <span class="icon-microwave"></span>
+        <p>Kiçik məişət texnikası</p>
+    </div>
+    <div class="category">
+        <span class="icon-headphones"></span>
+        <p>Aksesuar və İdman avadanlıqları</p>
+    </div>
+</div>
+<div class="secondcategorycontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
+     data-aos-once="true" data-aos-anchor-placement="top-center">
+    <h3>NƏ ALMAQ İSTƏYİRSİNİZ?</h3>
+    <div class="forflex">
+    
+        @foreach (Category item in Model.Categories)
+        {
+            <a href="product-by-category.html">
+                <div class="secondpartcategory @item.ClassName">
+                    <p data-aos="fade-right" data-aos-duration="700" data-aos-easing="ease-in-out" data-aos-once="true"
+                       data-aos-anchor=".secondcategorycontainer" data-aos-anchor-placement="top-center">@item.Name</p>
+                    <img src="~/img/@item.Image" alt="" />
+                </div>
+            </a>
+        }
+    
+
+    </div>
+</div>
+<div class="productcontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
+     data-aos-once="true" data-aos-anchor-placement="top-center">
+    <h3>YENİ MƏHSULLAR</h3>
+    <div class="forflex" style=" max-width: initial;">
+ 
+        @foreach (Product item in Model.Products)
+        {
+            
+                <div class="productcard" style="position:relative">
+                        <a href="#index.html" 
+                           style="       
+                                position: absolute;
+                                top: 10px;
+                                right: 15px;
+                                z-index: 100;
+                                color: #6D757A;
+                                width:auto !important;
+                                 "> <i class="far fa-heart"></i></a>
+                        <a href="#"><img src="~/img/@item.Image" alt=""  style="margin-top:30px"/></a>
+                    <p>@item.Name</p>
+                    <div class="pricecontainer">
+                        <p class="price">@item.Price</p>
+                        <p class="currency">AZN</p>
+                    </div>
+                    <div class="buttoncontainer">
+                        <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@item.Id"
+                           style="        
+                                width: auto !important;
+                                padding: 5px 30px;
+                                color: white;
+                                border-radius: 20px;
+                                background-color: #6D757A;
+                                margin-bottom:10px
+                                  ">
+                            Məhsula bax
+                        </a>
+                        <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                            Karta əlavə et
+                        </a>
+                    </div>
+                </div>
+        }
+    </div>
+    <div class="buttoncontainer">
+        <button class="loadmore">Daha cox</button>
+    </div>
+</div>
+<div class="productcontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
+     data-aos-once="true" data-aos-anchor-placement="top-center">
+    <h3>ƏN ÇOX BAXILAN MƏHSULLAR</h3>
+    <div class="forflex">
+        <a href="product.html">
+            <div class="productcard">
+                <div class="card-icon">
+                    <i class="fas fa-balance-scale-left balance"></i>
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+
+                <img src="~/img/404-4046223_apple-iphone-11-png-iphone-11-front-view.png" alt="" />
+                <p>Redmi Note 10S 64GB</p>
+                <div class="pricecontainer">
+                    <p class="price">559</p>
+                    <p class="currency">AZN</p>
+                </div>
+                <div class="buttoncontainer">
+                    <button class="cash">Nəğd</button>
+                    <button class="credit">Kredit</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="product.html">
+            <div class="productcard">
+                <div class="card-icon">
+                    <i class="fas fa-balance-scale-left balance"></i>
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+
+                <img src="~/img/404-4046223_apple-iphone-11-png-iphone-11-front-view.png" alt="" />
+                <p>Redmi Note 10S 64GB</p>
+                <div class="pricecontainer">
+                    <p class="price">559</p>
+                    <p class="currency">AZN</p>
+                </div>
+                <div class="buttoncontainer">
+                    <button class="cash">Nəğd</button>
+                    <button class="credit">Kredit</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="product.html">
+            <div class="productcard">
+                <div class="card-icon">
+                    <i class="fas fa-balance-scale-left balance"></i>
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+
+                <img src="~/img/404-4046223_apple-iphone-11-png-iphone-11-front-view.png" alt="" />
+                <p>Redmi Note 10S 64GB</p>
+                <div class="pricecontainer">
+                    <p class="price">559</p>
+                    <p class="currency">AZN</p>
+                </div>
+                <div class="buttoncontainer">
+                    <button class="cash">Nəğd</button>
+                    <button class="credit">Kredit</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="product.html">
+            <div class="productcard">
+                <div class="card-icon">
+                    <i class="fas fa-balance-scale-left balance"></i>
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+
+                <img src="~/img/404-4046223_apple-iphone-11-png-iphone-11-front-view.png" alt="" />
+                <p>Redmi Note 10S 64GB</p>
+                <div class="pricecontainer">
+                    <p class="price">559</p>
+                    <p class="currency">AZN</p>
+                </div>
+
+                <div class="buttoncontainer">
+                    <button class="cash">Nəğd</button>
+                    <button class="credit">Kredit</button>
+                </div>
+            </div>
+        </a>
+
+    </div>
+    <div class="buttoncontainer">
+        <button class="loadmore">Daha cox</button>
+    </div>
+</div>

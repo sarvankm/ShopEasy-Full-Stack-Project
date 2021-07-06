@@ -1,0 +1,193 @@
+footer {
+  margin-top: 90px;
+  background: #6d757a; }
+  footer .footercontainer {
+    max-width: 1270px;
+    margin: 0 auto; }
+  footer .footerlogocontainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px; }
+    footer .footerlogocontainer i {
+      font-size: 35px;
+      margin: 20px;
+      color: white; }
+  footer .info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px; }
+    footer .info .column {
+      width: 23%;
+      color: white;
+      display: flex;
+      line-height: 0.6; }
+      footer .info .column .title {
+        font-weight: bold;
+        margin-bottom: 40px; }
+      footer .info .column:first-child {
+        margin-left: 100px; }
+      footer .info .column .line {
+        width: 1px;
+        height: 45%;
+        background-color: white;
+        margin-left: 85px;
+        margin-top: 5px; }
+      footer .info .column:nth-child(3) .line {
+        margin-left: 110px; }
+  footer hr {
+    background-color: white;
+    opacity: 1;
+    margin-top: 80px;
+    margin-bottom: 50px; }
+  footer .contact {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 50px; }
+    footer .contact .mail {
+      display: flex;
+      color: white;
+      align-items: center;
+      justify-content: center;
+      width: 48%; }
+    footer .contact .location {
+      display: flex;
+      color: white;
+      align-items: center;
+      justify-content: center;
+      width: 48%; }
+    footer .contact i {
+      font-size: 45px; }
+    footer .contact p {
+      padding-left: 20px;
+      padding-top: 10px; }
+
+.userinfo a {
+  text-decoration: none; }
+
+.userinfo .search-box {
+  display: none;
+  background-color: none;
+  height: 40px;
+  border-radius: 40px;
+  margin-top: 10px; }
+
+.userinfo .search-box:hover > .search-txt {
+  width: 285px;
+  padding: 6px 12px; }
+
+.userinfo .search-box > .search-btn {
+  background-color: #fff; }
+
+.userinfo .search-btn {
+  color: #555970;
+  float: right;
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  margin: 0; }
+
+.userinfo .search-txt {
+  border: none;
+  background: transparent;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  width: 0; }
+
+.userinfo .search-txt::placeholder {
+  color: white; }
+
+.responsive-info {
+  display: none; }
+
+.accordion-container {
+  position: relative;
+  width: 100%;
+  border-top: none;
+  outline: 0;
+  cursor: pointer;
+  margin-bottom: 70px; }
+
+.accordion-container .article-title {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 20px;
+  padding-left: 85px;
+  font-size: 1.25em;
+  font-weight: normal;
+  color: white;
+  cursor: pointer;
+  font-weight: bold; }
+
+.accordion-container .article-title:active,
+.accordion-container .content-entry.open .article-title {
+  background-color: #9498a6;
+  color: white; }
+
+.accordion-container .content-entry .accordion-content .column {
+  margin-top: 10px; }
+
+.accordion-container .content-entry {
+  border-bottom: 1px solid white; }
+
+.accordion-container .article-title:hover i:before,
+.accordion-container .article-title:hover i:active {
+  color: white; }
+
+.accordion-content {
+  display: none;
+  padding-left: 85px;
+  color: white; }
+
+/* This stuff is just for the Codepen demo */
+#content {
+  width: 100%; }
+
+.accordion-container {
+  width: 100%; }
+
+.d-none {
+  display: none; }
+
+.d-block {
+  display: block; }
+
+@media only screen and (max-width: 992px) {
+  .responsive-info {
+    display: block; }
+  footer hr {
+    display: none; }
+  .footercontainer .info {
+    display: none; }
+  .logocontainer {
+    display: none; } }
+
+@media only screen and (max-width: 568px) {
+  footer .footerlogocontainer {
+    display: none; }
+  .accordion-container .article-title {
+    font-size: 14px; }
+  footer .contact {
+    display: block; }
+  footer .contact .mail,
+  footer .contact .location {
+    width: 74%; }
+  footer .contact .location p {
+    width: 45%; } }
+
+@media only screen and (max-width: 360px) {
+  footer .contact .mail,
+  footer .contact .location {
+    width: 100%; }
+  footer .contact .location p {
+    width: 52%; } }

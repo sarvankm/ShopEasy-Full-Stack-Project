@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("../icons/icomoon.eot?b287h9");
+  src: url("../icons/icomoon.eot?b287h9#iefix") format("embedded-opentype"),
+    url("../icons/icomoon.ttf?b287h9") format("truetype"),
+    url("../icons/icomoon.woff?b287h9") format("woff"),
+    url("../icons/icomoon.svg?b287h9#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-headphones:before {
+  content: "\e905";
+}
+.icon-microwave:before {
+  content: "\e901";
+}
+.icon-oven:before {
+  content: "\e901";
+}
+.icon-kitchen:before {
+  content: "\e901";
+}
+.icon-washingmachine:before {
+  content: "\e900";
+}
+.icon-laptop:before {
+  content: "\e902";
+}
+.icon-computer:before {
+  content: "\e902";
+}
+.icon-screen:before {
+  content: "\e902";
+}
+.icon-mobile:before {
+  content: "\e903";
+}
+.icon-display1:before {
+  content: "\e956";
+}

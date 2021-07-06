@@ -1,0 +1,63 @@
+.productcontainer {
+  max-width: 1270px;
+  margin: 0 auto; }
+  .productcontainer .forflex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+  .productcontainer h3 {
+    text-align: center;
+    padding: 70px; }
+  .productcontainer p {
+    text-align: center; }
+  .productcontainer .productcard {
+    width: 23%;
+    margin-top: 20px;
+    box-shadow: 0 0 12px 0 #dadcdd;
+    border-radius: 10px; }
+    .productcontainer .productcard:hover img {
+      width: 100%;
+      transform: scale(1.05); }
+    .productcontainer .productcard .pricecontainer {
+      display: flex;
+      justify-content: center; }
+    .productcontainer .productcard .price {
+      font-weight: bolder; }
+    .productcontainer .productcard .currency {
+      font-size: 10px;
+      margin-top: 6px; }
+    .productcontainer .productcard img {
+      width: 100%;
+      transition: 0.6s ease-in-out; }
+    .productcontainer .productcard .buttoncontainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .productcontainer .productcard .buttoncontainer button {
+        padding: 5px 50px;
+        border-radius: 20px;
+        margin-bottom: 15px; }
+      .productcontainer .productcard .buttoncontainer .cash {
+        background: #6d757a;
+        color: white; }
+      .productcontainer .productcard .buttoncontainer .credit {
+        color: #6d757a;
+        border: 1px solid #6d757a; }
+    .productcontainer .productcard .card-icon {
+      display: flex;
+      justify-content: flex-end; }
+      .productcontainer .productcard .card-icon i {
+        margin: 15px 8px;
+        color: #555970; }
+
+.buttoncontainer {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .buttoncontainer .loadmore {
+    padding: 5px 50px;
+    background: #6d757a;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px; }

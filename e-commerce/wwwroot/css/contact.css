@@ -1,0 +1,107 @@
+.contactcontainer {
+  display: flex;
+  max-width: 1270px;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 10px 0px; }
+  .contactcontainer form {
+    width: 35%;
+    display: flex;
+    flex-direction: column; }
+    .contactcontainer form label {
+      padding: 10px 25px;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #6d757a; }
+    .contactcontainer form input {
+      padding: 13px 25px;
+      border-radius: 30px;
+      border: 0.5px solid #9b9eaa; }
+    .contactcontainer form textarea {
+      margin-top: 65px;
+      border-radius: 30px;
+      border: 0.5px solid #9b9eaa;
+      padding-left: 25px;
+      padding-top: 15px; }
+    .contactcontainer form button {
+      padding: 12px 20px;
+      width: 60%;
+      border-radius: 30px;
+      background-color: #6d757a;
+      color: white;
+      font-size: 20px;
+      margin-top: 65px; }
+  .contactcontainer .carouselcontainer {
+    width: 750px;
+    height: 750px;
+    background: #6d757a;
+    border-radius: 10px;
+    color: white; }
+    .contactcontainer .carouselcontainer .carousel-control-next {
+      height: 35px;
+      margin-top: 75px; }
+    .contactcontainer .carouselcontainer .filials {
+      position: relative;
+      padding-bottom: 90px; }
+      .contactcontainer .carouselcontainer .filials h5 {
+        margin-top: 40px;
+        padding: 40px;
+        font-size: 23px; }
+      .contactcontainer .carouselcontainer .filials p {
+        position: absolute;
+        top: 0;
+        right: 100px;
+        padding: 40px;
+        padding-right: 0px; }
+    .contactcontainer .carouselcontainer .contact .phone,
+    .contactcontainer .carouselcontainer .contact .mail,
+    .contactcontainer .carouselcontainer .contact .location {
+      display: flex;
+      align-items: center;
+      padding: 30px;
+      margin-top: 10px; }
+      .contactcontainer .carouselcontainer .contact .phone i,
+      .contactcontainer .carouselcontainer .contact .mail i,
+      .contactcontainer .carouselcontainer .contact .location i {
+        font-size: 45px;
+        padding-left: 150px; }
+      .contactcontainer .carouselcontainer .contact .phone p,
+      .contactcontainer .carouselcontainer .contact .mail p,
+      .contactcontainer .carouselcontainer .contact .location p {
+        font-size: 20px;
+        padding-left: 90px;
+        line-height: 1.2;
+        margin-top: 25px;
+        font-weight: 600; }
+    .contactcontainer .carouselcontainer .contact .phone p,
+    .contactcontainer .carouselcontainer .contact .mail p {
+      margin-top: 10px; }
+    .contactcontainer .carouselcontainer .contact .location {
+      padding-top: 10px; }
+      .contactcontainer .carouselcontainer .contact .location p {
+        padding-left: 100px; }
+    .contactcontainer .carouselcontainer .contact .phone:hover,
+    .contactcontainer .carouselcontainer .contact .mail:hover,
+    .contactcontainer .carouselcontainer .contact .location:hover {
+      background: white;
+      color: #6d757a;
+      cursor: pointer; }
+
+.map {
+  max-width: 1270px;
+  margin: 0 auto;
+  margin-top: 150px; }
+  .map iframe {
+    width: 100%; }
+
+@media (max-width: 992px) {
+  .contactcontainer form {
+    display: none; }
+  .contactcontainer .carouselcontainer {
+    width: 100%; }
+    .contactcontainer .carouselcontainer .filials p {
+      display: none; }
+    .contactcontainer .carouselcontainer .contact .phone i,
+    .contactcontainer .carouselcontainer .contact .mail i,
+    .contactcontainer .carouselcontainer .contact .location i {
+      padding-left: 10px; } }

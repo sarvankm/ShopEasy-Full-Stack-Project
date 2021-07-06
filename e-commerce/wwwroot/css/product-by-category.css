@@ -1,0 +1,246 @@
+.cuerpo {
+  width: 23%;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 12px 0 #dadcdd;
+  margin-top: 20px;
+  height: 100%;
+  margin-right: 20px; }
+
+.img {
+  width: 200px;
+  position: relative;
+  top: -90px;
+  filter: drop-shadow(0 25px 0px #e1d6f6); }
+
+.titulo {
+  text-align: center;
+  color: #1d1e35;
+  font-size: 25px;
+  font-weight: 700; }
+
+.pregunta {
+  color: #4a4b5e;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 20px 0; }
+
+.parrafo {
+  color: #787887;
+  line-height: 17px;
+  position: relative;
+  top: -20px;
+  height: 200px;
+  opacity: 0;
+  transition: top 0.4s, opacity 0.4s;
+  z-index: 1; }
+  .parrafo p {
+    text-align: left !important; }
+
+.parrafo.pricerange {
+  height: 100px; }
+
+.lista {
+  list-style: none;
+  padding: 0 15px; }
+
+.item_header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2; }
+
+.item {
+  border-bottom: 1px solid #e6e6e9;
+  width: 100%;
+  cursor: pointer; }
+
+.icon {
+  color: #6d757a;
+  transition: transform 0.4s; }
+
+li {
+  height: 54px;
+  overflow: hidden;
+  transition: all 0.4s; }
+
+.active > .item_header > .pregunta {
+  font-weight: bold; }
+
+.active > .item_header > .icon {
+  transform: rotate(180deg); }
+
+.active > .parrafo {
+  opacity: 1;
+  top: 0; }
+
+.active {
+  height: 200px; }
+
+.productcontainer .forflex {
+  max-width: 958px; }
+  .productcontainer .forflex a {
+    width: 32% !important; }
+
+.secondpartheader .hamburgermenu input:focus {
+  outline-offset: -2px; }
+
+.secondpartheader .hamburgermenu #submitsearch {
+  border: 1px solid #8a8686;
+  margin-left: -82px;
+  padding: 5px;
+  border-radius: 19px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 8px;
+  padding-top: 4px;
+  display: none;
+  box-shadow: 0 0 1px black;
+  margin-right: 110px; }
+
+.secondpartheader .hamburgermenu #searchInput {
+  width: 100%;
+  border: 1px solid #6d757a;
+  border-radius: 30px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url("https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-24.png");
+  background-position: 10px 7px;
+  background-repeat: no-repeat;
+  padding: 8px 20px 8px 40px;
+  -webkit-transition: width 0.8s ease-in-out;
+  transition: width 0.8s ease-in-out;
+  outline: none;
+  opacity: 0.9; }
+
+/* This line can be removed it was just for display on CodePen: */
+.container {
+  margin-top: 10px; }
+
+.slider-labels {
+  margin-top: 10px; }
+
+/* Functional styling;
+   * These styles are required for noUiSlider to function.
+   * You don't need to change these rules to apply your design.
+   */
+.noUi-target,
+.noUi-target * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-touch-action: none;
+  touch-action: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.noUi-target {
+  position: relative;
+  direction: ltr; }
+
+.noUi-base {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  /* Fix 401 */ }
+
+.noUi-origin {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+.noUi-handle {
+  position: relative;
+  z-index: 1; }
+
+.noUi-stacking .noUi-handle {
+  /* This class is applied to the lower origin when
+     its values is > 50%. */
+  z-index: 10; }
+
+.noUi-state-tap .noUi-origin {
+  -webkit-transition: left 0.3s, top 0.3s;
+  transition: left 0.3s, top 0.3s; }
+
+.noUi-state-drag * {
+  cursor: inherit !important; }
+
+/* Painting and performance;
+   * Browsers can paint handles in their own layer.
+   */
+.noUi-base,
+.noUi-handle {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+/* Slider size and handle placement;
+   */
+.noUi-horizontal {
+  height: 4px; }
+
+.noUi-horizontal .noUi-handle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  left: -7px;
+  top: -7px;
+  background-color: #345dbb; }
+
+/* Styling;
+   */
+.noUi-background {
+  background: #d6d7d9; }
+
+.noUi-connect {
+  background: #345dbb;
+  -webkit-transition: background 450ms;
+  transition: background 450ms; }
+
+.noUi-origin {
+  border-radius: 2px; }
+
+.noUi-target {
+  border-radius: 2px; }
+
+/* Handles and cursors;
+   */
+.noUi-draggable {
+  cursor: w-resize; }
+
+.noUi-vertical .noUi-draggable {
+  cursor: n-resize; }
+
+.noUi-handle {
+  cursor: default;
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important; }
+
+.noUi-handle:active {
+  border: 8px solid #345dbb;
+  border: 8px solid rgba(53, 93, 187, 0.38);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  left: -14px;
+  top: -14px; }
+
+/* Disabled state;
+   */
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+  background: #b8b8b8; }
+
+[disabled].noUi-origin,
+[disabled] .noUi-handle {
+  cursor: not-allowed; }

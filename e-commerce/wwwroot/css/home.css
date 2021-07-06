@@ -1,0 +1,294 @@
+.d-none {
+  display: none; }
+
+.d-block {
+  display: block; }
+
+.rotate {
+  transition: 1s ease-in-out !important;
+  transform: rotate(360deg); }
+
+a {
+  text-decoration: none; }
+
+.carouselcontainer {
+  max-width: 1270px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px; }
+
+.carouselcontainer img {
+  width: 100%;
+  height: 485px; }
+
+.categorycontainer {
+  display: flex;
+  max-width: 1270px;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 90px; }
+
+.categorycontainer .category {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding-top: 20px;
+  border: 1px solid #6d757a;
+  background: #6d757a;
+  color: white;
+  transition: 0.2s ease-in-out; }
+  .categorycontainer .category:hover {
+    color: #6d757a;
+    background: white; }
+  .categorycontainer .category span {
+    font-size: 40px; }
+  .categorycontainer .category p {
+    text-align: center; }
+
+.secondcategorycontainer {
+  max-width: 1270px;
+  margin: 0 auto; }
+  .secondcategorycontainer .forflex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+  .secondcategorycontainer a {
+    font-size: 25px;
+    margin-top: 44px;
+    background: linear-gradient(to bottom right, #4c4e52 0%, #d1d1d1 100%);
+    border-radius: 10px;
+    color: white;
+    width: 31%; }
+  .secondcategorycontainer h3 {
+    text-align: center;
+    padding-bottom: 85px; }
+  .secondcategorycontainer img {
+    width: 100%; }
+  .secondcategorycontainer .secondpartcategory.phone img {
+    width: 55%;
+    margin-left: 20%;
+    margin-top: -20px; }
+  .secondcategorycontainer .secondpartcategory.laptop img {
+    width: 100%;
+    margin-top: 30px; }
+  .secondcategorycontainer .secondpartcategory.tv img {
+    width: 86%;
+    margin-left: 30px;
+    margin-top: -25px; }
+
+    .secondcategorycontainer .secondpartcategory.accesories img{
+        width: 57%;
+        margin-left: 20%;
+        margin-top: -15px;
+    }
+  .secondcategorycontainer .secondpartcategory.gameconsole img {
+    width: 91%;
+    margin-left: 20px; }
+  .secondcategorycontainer p {
+    margin-left: 20px;
+    margin-top: 10px; }
+  .secondcategorycontainer .first {
+    margin-top: 0; }
+
+.productcontainer {
+  max-width: 1270px;
+  margin: 0 auto; }
+  .productcontainer .forflex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+  .productcontainer h3 {
+    text-align: center;
+    padding: 70px; }
+  .productcontainer p {
+    text-align: center; }
+  .productcontainer .productcard {
+    width: 23%;
+    margin-top: 20px;
+    box-shadow: 0 0 12px 0 #dadcdd;
+    border-radius: 10px; }
+    .productcontainer .productcard p {
+      color: #555970; }
+    .productcontainer .productcard:hover img {
+      width: 100%;
+      transform: scale(1.05); }
+    .productcontainer .productcard .pricecontainer {
+      display: flex;
+      justify-content: center; }
+    .productcontainer .productcard .price {
+      font-weight: bolder; }
+    .productcontainer .productcard .currency {
+      font-size: 10px;
+      margin-top: 6px; }
+    .productcontainer .productcard img {
+      width: 100%;
+      transition: 0.6s ease-in-out; }
+    .productcontainer .productcard .buttoncontainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .productcontainer .productcard .buttoncontainer button {
+        padding: 5px 50px;
+        border-radius: 20px;
+        margin-bottom: 15px; }
+      .productcontainer .productcard .buttoncontainer .cash {
+        background: #6d757a;
+        color: white; }
+      .productcontainer .productcard .buttoncontainer .credit {
+        color: #6d757a;
+        border: 1px solid #6d757a; }
+    .productcontainer .productcard .card-icon {
+      display: flex;
+      justify-content: flex-end; }
+      .productcontainer .productcard .card-icon i {
+        margin: 15px 8px;
+        color: #555970; }
+
+.buttoncontainer {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .buttoncontainer .loadmore {
+    padding: 5px 50px;
+    background: #6d757a;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px; }
+
+input:focus {
+  outline-offset: -2px; }
+
+#submitsearch {
+  border: 1px solid #8a8686;
+  margin-left: -82px;
+  padding: 5px;
+  border-radius: 19px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 8px;
+  padding-top: 4px;
+  display: none;
+  box-shadow: 0 0 1px black;
+  margin-right: 110px; }
+
+#searchInput {
+  width: 100%;
+  border: 1px solid #6d757a;
+  border-radius: 30px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url("https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-24.png");
+  background-position: 10px 7px;
+  background-repeat: no-repeat;
+  padding: 8px 20px 8px 40px;
+  -webkit-transition: width 0.8s ease-in-out;
+  transition: width 0.8s ease-in-out;
+  outline: none;
+  opacity: 0.9; }
+
+@media only screen and (max-width: 1300px) {
+  .productcontainer,
+  .secondcategorycontainer,
+  .categorycontainer {
+    max-width: 1290px;
+    padding: 20px !important; } }
+
+@media only screen and (max-width: 992px) {
+  .secondcategorycontainer .secondpartcategory.phone img {
+    width: 50%;
+    margin-left: 25%; }
+  #content h4,
+  #content p {
+    font-size: 14px; }
+  #nav-icon1 {
+    display: block; }
+  .categorycontainer {
+    display: none; }
+  .carouselcontainer img {
+    height: 340px; }
+  .secondcategorycontainer h3,
+  .productcontainer h3 {
+    padding-top: 90px;
+    padding-bottom: 40px;
+    margin: 0;
+    font-size: 22px; }
+  .productcontainer,
+  .secondcategorycontainer,
+  .categorycontainer,
+  .carouselcontainer {
+    max-width: 912px !important; }
+  .secondcategorycontainer a {
+    width: 48%;
+    margin-top: 44px; }
+  .productcontainer .forflex .productcard {
+    width: 32%; } }
+
+@media only screen and (max-width: 768px) {
+  .productcontainer,
+  .secondcategorycontainer,
+  .categorycontainer,
+  .carouselcontainer {
+    max-width: 768px !important; }
+  .productcontainer .forflex .productcard {
+    width: 48%;
+    margin-top: 25px; } }
+
+@media only screen and (max-width: 568px) {
+  .productcontainer,
+  .secondcategorycontainer,
+  .categorycontainer,
+  .carouselcontainer {
+    max-width: 568px !important; }
+  .secondcategorycontainer .secondpartcategory.phone img {
+    width: 60%;
+    margin-top: -6%;
+    margin-left: 20%; }
+  .secondcategorycontainer .secondpartcategory.tv img {
+    width: 90%;
+    margin-left: 9px;
+    margin-top: -12px; }
+  .secondcategorycontainer p {
+    font-size: 17px; }
+  .secondcategorycontainer .secondpartcategory .accesories .firstimg {
+    margin-left: 14px; }
+  .secondcategorycontainer .secondpartcategory .accesories .secimg {
+    margin-left: -60px;
+    margin-top: -12px; }
+  .productcontainer .forflex {
+    justify-content: center; }
+    .productcontainer .forflex .productcard {
+      width: 60%;
+      margin-top: 25px; }
+  .carouselcontainer img {
+    width: 530px;
+    height: 201px; } }
+
+@media only screen and (max-width: 360px) {
+  .productcontainer,
+  .secondcategorycontainer,
+  .categorycontainer,
+  .carouselcontainer {
+    max-width: 340px !important; }
+  .secondcategorycontainer .secondpartcategory .accesories .secimg {
+    margin-left: -95px;
+    margin-top: -25px; }
+  .secondcategorycontainer p {
+    font-size: 20px; }
+  .productcontainer h3 {
+    padding: 65px; }
+  .carouselcontainer img {
+    height: 140px; }
+  .productcontainer .forflex .productcard {
+    width: 100%; }
+  .secondcategorycontainer a {
+    width: 100%;
+    margin-top: 44px; } }
+.active{
+    height:auto;
+}

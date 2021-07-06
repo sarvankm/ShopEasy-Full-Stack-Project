@@ -1,0 +1,294 @@
+header {
+  /*
+    * Just a quick hamburger
+    */
+  /* 
+    * Transform all the slices of hamburger
+    * into a crossmark.
+    */
+  /*
+    * But let's hide the middle one.
+    */
+  /*
+    * Ohyeah and the last one should go the other direction
+    */
+  /*
+    * Make this absolute positioned
+    * at the top left of the screen
+    */
+  /*
+    * And let's slide it in from the left
+    */ }
+  header .firstpartheader {
+    display: flex;
+    color: white;
+    max-width: 1270px;
+    margin: 0 auto; }
+  header .headercolor {
+    background: #6d757a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; }
+  header .hamburger {
+    margin: 0 auto;
+    margin-bottom: 60px; }
+    header .hamburger div {
+      width: 100%;
+      border-bottom: 1px solid #6d757a;
+      padding: 20px 100px; }
+    header .hamburger .lastchildhamburger {
+      border-bottom: 0px; }
+  header .secondpartheader .hamburgermenu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%; }
+    header .secondpartheader .hamburgermenu .navigation {
+      display: none; }
+  header .secondpartheader a {
+    position: relative; }
+  header .secondpartheader .numberofproduct {
+    border-radius: 50%;
+    background: #fdc705;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 15px;
+    left: 12px; }
+  header .secondpartheader img {
+    width: 200px;
+    height: 120px; }
+  header .secondpartheader .userinfo {
+    display: flex; }
+  header .secondpartheader a,
+  header .secondpartheader p {
+    margin: 15px;
+    font-size: 20px;
+    color: #555970;
+    transition: 0.2s ease-in-out; }
+  header .secondpartheader a:hover {
+    color: #5d99f1; }
+  header .secondpartheader p {
+    margin-top: 12px;
+    font-size: 24px; }
+  header .secondpartheader {
+    max-width: 1270px;
+    margin: 0 auto;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    margin-top: 50px; }
+  header .linkcontainer a {
+    font-size: 12px;
+    color: white;
+    margin: 16px; }
+  header .linkcontainer p {
+    padding: 11px;
+    padding-right: 60px;
+    margin: 0; }
+  header .linkcontainer .lastlink {
+    padding-right: 60px !important; }
+  header .logocontainer i {
+    padding-top: 18px !important; }
+  header #menuToggle {
+    display: block;
+    position: relative;
+    top: 53px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none; }
+  header #menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none; }
+  header #menuToggle #line {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #555970;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; }
+  header #menuToggle #line:first-child {
+    transform-origin: 0% 0%; }
+  header #menuToggle #line:nth-last-child(2) {
+    transform-origin: 0% 100%; }
+  header #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #555970; }
+  header #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2); }
+  header #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px); }
+  header #menu {
+    position: absolute;
+    width: 1041px;
+    margin: 0 0 0 -135px;
+    padding-top: 20px;
+    background: #ffffff;
+    list-style-type: none;
+    overflow: scroll;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); }
+    header #menu a {
+      margin-left: 100px;
+      display: flex;
+      align-items: center; }
+      header #menu a span {
+        font-size: 32px; }
+      header #menu a p {
+        padding-left: 10px; }
+      header #menu a .comp {
+        padding-left: 2px; }
+  header #menu li {
+    padding: 10px 0;
+    font-size: 22px; }
+  header #menuToggle input:checked ~ ul {
+    transform: none; }
+
+.userinfo a {
+  text-decoration: none; }
+
+.userinfo .search-box {
+  display: none;
+  background-color: none;
+  height: 40px;
+  border-radius: 40px;
+  margin-top: 10px; }
+
+.userinfo .search-box:hover > .search-txt {
+  width: 285px;
+  padding: 6px 12px; }
+
+.userinfo .search-box > .search-btn {
+  background-color: #fff; }
+
+.userinfo .search-btn {
+  color: #555970;
+  float: right;
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  margin: 0; }
+
+.userinfo .search-txt {
+  border: none;
+  background: transparent;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  width: 0; }
+
+.userinfo .search-txt::placeholder {
+  color: white; }
+
+@media only screen and (max-width: 1300px) {
+  .info,
+  .secondpartheader {
+    max-width: 1290px;
+    padding: 20px !important; }
+  .firstpartheader {
+    padding: 0 20px !important; }
+  header .linkcontainer .mainpage {
+    margin-left: 5px; } }
+
+@media only screen and (max-width: 992px) {
+  .secondpartheader,
+  .firstpartheader {
+    max-width: 912px !important; }
+  .logocontainer,
+  .linkcontainer p {
+    display: none; }
+  .userinfo p,
+  .userinfo .search {
+    display: none; }
+  .secondpartheader .hamburgermenu {
+    align-items: center; }
+    .secondpartheader .hamburgermenu .fa-bars {
+      display: block; }
+    .secondpartheader .hamburgermenu .fa-times {
+      display: block; }
+    .secondpartheader .hamburgermenu .navigation {
+      display: block !important; }
+  .line {
+    margin-left: 60px !important; }
+  .linkcontainer p {
+    display: none; }
+  header #menu {
+    width: 1067px; } }
+
+@media only screen and (max-width: 768px) {
+  .secondpartheader,
+  .firstpartheader,
+  .login-register {
+    max-width: 768px !important; }
+  header #menu {
+    width: 883px; } }
+
+@media only screen and (max-width: 568px) {
+  header .secondpartheader a,
+  header .secondpartheader p {
+    margin: 7px; }
+  header .secondpartheader img {
+    width: 110px;
+    height: 82px; }
+  header .secondpartheader,
+  header .firstpartheader {
+    max-width: 568px !important; }
+  header #menu {
+    width: 683px; }
+  header #menuToggle {
+    top: 33px; }
+  header .userinfo .search-box {
+    display: none; } }
+
+@media only screen and (max-width: 360px) {
+  .secondpartheader,
+  .firstpartheader {
+    max-width: 340px !important; }
+  header .linkcontainer .lastlink {
+    padding-right: 0px !important; }
+  header .secondpartheader .userinfo {
+    margin-top: 10px; }
+  header .logocontainer {
+    display: none; }
+  header .linkcontainer p {
+    display: none; }
+  header .secondpartheader {
+    display: block; }
+  header #menu {
+    width: 475px; } }

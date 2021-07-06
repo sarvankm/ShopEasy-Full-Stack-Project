@@ -1,0 +1,77 @@
+﻿@model List<BasketVM>
+@{
+    ViewData["Title"] = "Basket";
+    double price = 0;
+
+
+}
+
+
+<!-- shopping card start -->
+<div class="shopping-card-container">
+    <div class="shopping-cart" style=" height: auto;">
+        <!-- Title -->
+        <div class="title-card">
+            Səbətim
+        </div>
+        @foreach (BasketVM item in Model)
+        {
+            <div class="item">
+                <div class="buttons">
+                    <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn"></span></a>
+
+                    <span class="like-btn">
+                    </span>
+                </div>
+
+                <div class="image">
+                    <img src="~/img/@item.Image" alt="" style=" width: 120px; margin-top: -15px; height: 109px;" />
+                </div>
+
+                <div class="description">
+                    <span class="name">@item.Name</span>
+                    <span>White</span>
+                </div>
+               
+                <div class="quantity" style="display:flex;justify-content:center;">
+
+                    <button class="plus-btn" name="button" onclick="myfunction()">
+                        <img src="~/img/plus.svg" alt="" />
+                    </button>
+                    <p class="countproduct" style="padding:3px 10px"></p>
+                    <button class="minus-btn" type="button" name="button">
+                        <img src="~/img/minus.svg" alt="" />
+                    </button>
+                </div>
+
+                <div class="total-price"><p class="price">@item.Price</p>  AZN</div>
+            </div>
+
+            price += item.Price;
+
+        }
+    </div>
+    <div class="amountcontainer">
+        <div class="amount">
+            <div class="titleamount" style=" margin: 25px 0;">
+                <p>Məhsul sayı</p>
+                <p>Toplam Ödəniş</p>
+            </div>
+            <div class="count" style=" margin: 25px 0;">
+                <p style="padding-left: 0;">@Model.Count()</p>
+                <div style="display:flex">
+                    <p class="totalamount" style=" padding: 10px 0px;"></p>
+                    <p style="padding-left: 5px;">Azn</p>
+                </div>
+                    
+                
+            </div>
+        </div>
+        <button>Alış verişə davam et</button>
+        <button class="finish-order">Sifarişi Tamamla</button>
+    </div>
+
+</div>
+
+
+<!-- shopping card end -->
