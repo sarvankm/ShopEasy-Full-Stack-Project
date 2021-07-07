@@ -1,24 +1,4 @@
-header {
-  /*
-    * Just a quick hamburger
-    */
-  /* 
-    * Transform all the slices of hamburger
-    * into a crossmark.
-    */
-  /*
-    * But let's hide the middle one.
-    */
-  /*
-    * Ohyeah and the last one should go the other direction
-    */
-  /*
-    * Make this absolute positioned
-    * at the top left of the screen
-    */
-  /*
-    * And let's slide it in from the left
-    */ }
+
   header .firstpartheader {
     display: flex;
     color: white;

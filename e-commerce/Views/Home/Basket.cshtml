@@ -18,7 +18,8 @@
         {
             <div class="item">
                 <div class="buttons">
-                    <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn"></span></a>
+                    
+                    <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn" onclick="myfunc()"></span></a>
 
                     <span class="like-btn">
                     </span>
@@ -35,8 +36,13 @@
                
                 <div class="quantity" style="display:flex;justify-content:center;">
 
-                    <button class="plus-btn" name="button" onclick="myfunction()">
-                        <img src="~/img/plus.svg" alt="" />
+                    <button class="plus-btn" name="button" 
+                        style="        
+                        background-image: url(../img/plus.svg);
+                        background-size: 10px;
+                        background-repeat: no-repeat;
+                        background-position:center;" 
+                        onclick="myfunction()">
                     </button>
                     <p class="countproduct" style="padding:3px 10px"></p>
                     <button class="minus-btn" type="button" name="button">
@@ -59,7 +65,11 @@
             </div>
             <div class="count" style=" margin: 25px 0;">
                 <p style="padding-left: 0;">@Model.Count()</p>
-                <div style="display:flex">
+                <div 
+                     style="        
+                           display: flex;
+                           width: 110px;
+                           ">
                     <p class="totalamount" style=" padding: 10px 0px;"></p>
                     <p style="padding-left: 5px;">Azn</p>
                 </div>
