@@ -11,12 +11,6 @@ namespace e_commerce.ViewComponents
 {
     public class HeaderViewComponent : ViewComponent
     {
-        private readonly ApplicationDbContext _db;
-
-        public HeaderViewComponent(ApplicationDbContext db)
-        {
-            _db = db;
-        }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {

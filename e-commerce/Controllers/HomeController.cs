@@ -14,20 +14,35 @@ namespace e_commerce.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly int _count;
+
         public HomeController(ApplicationDbContext db)
         {
             _db = db;
+            _count = _db.Products.Count();
+
         }
         public IActionResult Index()
         {
-           
+            ViewBag.ProductCount = _count;
+
             return View(new HomeVM { 
                 Sliders=_db.Sliders,
-                Categories=_db.Categories,
-                Products=_db.Products.OrderByDescending(a=>a.Id)
+                Categories=_db.Categories
             });
         }
-        public async Task<IActionResult> AddToBasket(int? id)
+        public IActionResult Load(int skip)
+        {
+            if (skip >= _db.Products.Count())
+            {
+                return NotFound();
+            }
+
+            IEnumerable<Product> model = _db.Products.Skip(skip).Take(4);
+
+            return PartialView("_ProductPartial", model);
+        }
+            public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id == null) return NotFound();
             Product product = await _db.Products.FindAsync(id);
