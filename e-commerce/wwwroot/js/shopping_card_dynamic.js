@@ -2,16 +2,13 @@
 const count = document.querySelectorAll(".countproduct");
 const price = document.querySelectorAll(".price");
 let totalamount = document.querySelector(".totalamount");
-for (var i = 0; i < count.length; i++) {
-    var arrr = [];
-    arrr.push(count[i]);
-}
+
 totalamount.innerHTML = 0;
 
 if (!JSON.parse(localStorage.getItem("basket"))) {
     console.log("rrrrrrr");
     const arr = [];
-    for (var i = 0; i < name.length; i++) {
+    for (let i = 0; i < name.length; i++) {
         const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
         arr.push(obj);
         localStorage.setItem("basket", JSON.stringify(arr));
@@ -22,7 +19,7 @@ if (!JSON.parse(localStorage.getItem("basket"))) {
     const basket = JSON.parse(localStorage.getItem("basket"));
     basket.map((prod) => {
         prod.productCount = 1;
-        for (var i = 0; i < count.length; i++) {
+        for (let i = 0; i < count.length; i++) {
             count[i].innerHTML = prod.productCount;
         }
     })
@@ -30,34 +27,42 @@ if (!JSON.parse(localStorage.getItem("basket"))) {
 }
 else {
     const basket = JSON.parse(localStorage.getItem("basket"));
+    const arr = [];
+
     for (let i = 0; i < name.length; i++) {
         console.log(name.length);
 
         if (basket.length === name.length) {
+            console.log("girdi");
+
             count[i].innerHTML = basket[i].productCount;
             totalamount.innerHTML = localStorage.getItem("totalamount");
 
         }
         else {
-            console.log("girdi");
+            console.log("girdi2");
+            for (let i = 0; i < name.length+1; i++) {
+                if (arr.length == 0) {
+                    for (let i = 0; i < basket.length; i++) {
+                        arr.push(basket[i]);
+                    }
+                }
+                if (!arr.find(a => a.productName == name[i].innerHTML)) {
+                    console.log(arr);
+                    const obj = { productName: name[i].innerHTML, productCount: 1, productPrice: price[i].innerHTML };
+                    arr.push(obj);
+                    localStorage.setItem("basket", JSON.stringify(arr));
+                    totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) + parseInt(obj.productPrice);
+                    localStorage.setItem("totalamount", totalamount.innerHTML);
+                    const basket2 = JSON.parse(localStorage.getItem("basket"));
+                    for (let i = 0; i < basket2.length; i++) {
+                        count[i].innerHTML = basket2[i].productCount;
 
-            const arr = [];
-            for (let i = 0; i < basket.length; i++) {
-                arr.push(basket[i]);
+                    }
+                }
             }
-            console.log(arr);
-            const obj = { productName: name[i].innerHTML, productCount: 1, productPrice: price[i].innerHTML };
-            arr.push(obj);
-            localStorage.setItem("basket", JSON.stringify(arr));
-            console.log(parseInt(obj.productPrice));
-            totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) + parseInt(obj.productPrice);
-            localStorage.setItem("totalamount", totalamount.innerHTML)
-            const basket2 = JSON.parse(localStorage.getItem("basket"));
 
-            for (let i = 0; i < basket2.length; i++) {
-                count[i].innerHTML = basket2[i].productCount;
-
-            }
+           
         }
     }
 
