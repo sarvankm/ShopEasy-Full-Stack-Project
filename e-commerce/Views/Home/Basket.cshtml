@@ -16,7 +16,7 @@
         </div>
         @foreach (BasketVM item in Model)
         {
-            <div class="item">
+            <div class="item" style="cursor:auto">
                 <div class="buttons">
                     
                     <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn" onclick="myfunc()"></span></a>
@@ -42,11 +42,16 @@
                         background-size: 10px;
                         background-repeat: no-repeat;
                         background-position:center;" 
-                        onclick="myfunction()">
+                        onclick="increase()">
                     </button>
                     <p class="countproduct" style="padding:3px 10px"></p>
-                    <button class="minus-btn" type="button" name="button">
-                        <img src="~/img/minus.svg" alt="" />
+                    <button class="minus-btn" type="button" name="button"
+                        style="        
+                        background-image: url(../img/minus.svg);
+                        background-size: 10px;
+                        background-repeat: no-repeat;
+                        background-position:center;" 
+                        onclick="decrease()">
                     </button>
                 </div>
 

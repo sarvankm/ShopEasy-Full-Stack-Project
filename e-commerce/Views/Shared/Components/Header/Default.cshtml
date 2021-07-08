@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Default";
+}
+
+<header>
+    <div class="headercolor">
+        <div class="firstpartheader">
+            <div class="linkcontainer d-flex">
+                <a asp-controller="Home" asp-action="Index" class="mainpage">Ana səhifə</a>
+                <a href="~/contact.html">Əlaqə</a>
+                <a href="" class="lastlink">Outlet</a>
+                <p>|</p>
+            </div>
+            <div class="logocontainer">
+                <i class="fab fa-facebook p-2"></i>
+                <i class="fab fa-instagram p-2"></i>
+                <i class="fab fa-twitter p-2"></i>
+                <i class="fab fa-youtube p-2"></i>
+                <i class="fab fa-linkedin-in p-2"></i>
+                <i class="fab fa-whatsapp p-2"></i>
+            </div>
+        </div>
+    </div>
+    <div class="secondpartheader">
+        <div class="hamburgermenu">
+            <nav role="navigation" class="navigation">
+                <div id="menuToggle">
+                    <input type="checkbox" />
+                    <span id="line"></span>
+                    <span id="line"></span>
+                    <span id="line"></span>
+                    <ul id="menu">
+                        <a href="">
+                            <span class="icon-mobile"></span>
+                            <p>Smartfon və Planşetlər</p>
+                        </a>
+                        <hr />
+                        <a href="">
+                            <span class="icon-washingmachine"></span>
+                            <p>Böyük məişət texnikası</p>
+                        </a>
+                        <hr />
+                        <a href="">
+                            <span class="icon-display1"></span>
+                            <p>Tv və Audio Sistemlər,Əyləncə</p>
+                        </a>
+                        <hr />
+                        <a href="">
+                            <span class="icon-laptop"></span>
+                            <p class="comp">Komputer və Ofis Avadanlığı</p>
+                        </a>
+                        <hr />
+                        <a href="">
+                            <span class="icon-microwave"></span>
+                            <p>Kiçik məişət texnikası</p>
+                        </a>
+                        <hr />
+                        <a href="">
+                            <span class="icon-headphones"></span>
+                            <p>Aksesuar və İdman avadanlıqları</p>
+                        </a>
+                        <hr />
+                    </ul>
+                </div>
+            </nav>
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/img/logo.png" alt="" />
+            </a>
+            <div style="width: 77%;">
+                <input type="text" id="searchInput" placeholder="Search..">
+
+            </div>
+
+
+        </div>
+
+        <div class="userinfo">
+            <p>|</p>
+            <a href="~/form.html">
+                <i class="far fa-user"></i>
+            </a>
+            <a href="">
+                <i class="fas fa-balance-scale-left"></i>
+                <div class="numberofproduct">0</div>
+            </a>
+            <a href="~/favorites.html">
+                <i class="far fa-heart"></i>
+                <div class="numberofproduct">0</div>
+            </a>
+            <a asp-controller="Home" asp-action="Basket" class="basket">
+                <i class="fas fa-shopping-basket"></i>
+                <div class="numberofproduct">@ViewBag.BasketCount</div>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+

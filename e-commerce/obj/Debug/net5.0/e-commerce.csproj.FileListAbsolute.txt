@@ -241,3 +241,4 @@ C:\Users\IDEAPAD\Desktop\Full_Stack_Project\e-commerce\bin\Debug\net5.0\runtimes
 C:\Users\IDEAPAD\Desktop\Full_Stack_Project\e-commerce\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\IDEAPAD\Desktop\Full_Stack_Project\e-commerce\obj\Debug\net5.0\Razor\Views\Category\Index.cshtml.g.cs
 C:\Users\IDEAPAD\Desktop\Full_Stack_Project\e-commerce\obj\Debug\net5.0\Razor\Views\Home\Basket.cshtml.g.cs
+C:\Users\IDEAPAD\Desktop\Full_Stack_Project\e-commerce\obj\Debug\net5.0\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs

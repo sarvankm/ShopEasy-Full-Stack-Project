@@ -20,12 +20,7 @@ namespace e_commerce.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.BasketCount = 0;
-            if (Request.Cookies["basket"] != null)
-            {
-                List<BasketVM> products = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
-                ViewBag.BasketCount = products.Count;
-            }
+           
             return View(new HomeVM { 
                 Sliders=_db.Sliders,
                 Categories=_db.Categories,
