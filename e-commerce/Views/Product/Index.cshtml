@@ -1,0 +1,127 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Index";
+    int counter = 0;
+    int counter2 = 0;
+}
+
+<main class="container">
+
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+        @foreach (ProductColor item in Model.ProductColors)
+        {
+            if (counter == 0)
+            {
+                <img class="active" data-image="@item.Color.Name" src="~/img/@item.Product.Images.ToList()[counter].ImageName" alt="">
+            }
+            else
+            {
+                <img data-image="@item.Color.Name" src="~/img/@item.Product.Images.ToList()[counter].ImageName" alt="">
+            }
+            counter++;
+        }
+    </div>
+
+
+    <!-- Right Column -->
+    <div class="right-column">
+
+        <!-- Product Description -->
+        <div class="product-description">
+            <span>@Model.Product.Category.Name</span>
+            <h1>@Model.Product.Name</h1>
+
+            <!-- Product Configuration -->
+            <div class="product-configuration">
+
+                <!-- Product Color -->
+                <div class="product-color">
+                    <span>Color</span>
+
+                    <div class="color-choose">
+                  
+                        @foreach (ProductColor item in Model.ProductColors)
+                        {
+                            if (counter2 == 0)
+                            {
+                                <div>
+                                    <input data-image="@item.Color.Name" type="radio" id="@item.Color.Name" name="color" value="@item.Color.Name" checked>
+                                    <label for="@item.Color.Name"><span style="background-color:@item.Color.ColorCode"></span></label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <input data-image="@item.Color.Name" type="radio" id="@item.Color.Name" name="color" value="@item.Color.Name">
+                                    <label for="@item.Color.Name"><span style="background-color:@item.Color.ColorCode"></span></label>
+                                </div>
+                            }
+                            counter2++;
+
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Product Pricing -->
+            <div class="product-price">
+                <span>@Model.Product.Price AZN</span>
+                <div class="buttons">
+                    <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Product.Id" class="cart-btn">Karta əlavə et</a>
+                    <a href="#" class="cart-btn">Nəğd al</a>
+
+                </div>
+            </div>
+        </div>
+
+</main>
+<div class="title-specs">
+    <h4>Xüsusiyyətlər</h4>
+</div>
+<div class="row">
+
+        <div class="col-lg-4 col-md-6 col-sm-12 pr-0">
+            <ul class="features-review-tabs submenuItems_params">
+                <li>
+                    @Model.Specs.ProducerForView
+                </li>
+                <li>
+                    @Model.Specs.ProductionYearForView
+                </li>
+                @if (Model.Specs.OSForView != null)
+                {
+                <li>
+                    @Model.Specs.OSForView
+                </li>
+                }
+                <li>
+                    @Model.Specs.TypeForView
+                </li>
+            </ul>
+        </div>
+
+ 
+    <div class="col-lg-8 col-md-6 col-sm-12 pl-0">
+        <ul class="features-review-tabs submenuItems_params">
+            <li>
+                @Model.Specs.ProducerValue
+            </li>
+            <li>
+                @Model.Specs.ProductionYearValue
+            </li>
+            @if (Model.Specs.OSForView != null)
+            {
+                <li>
+                    @Model.Specs.OSValue
+                </li>
+            }
+            <li>
+                @Model.Specs.TypeValue
+            </li>
+        </ul>
+    </div>
+</div>
+

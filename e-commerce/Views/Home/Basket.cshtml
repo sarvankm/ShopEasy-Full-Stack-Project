@@ -1,12 +1,8 @@
 ﻿@model List<BasketVM>
 @{
     ViewData["Title"] = "Basket";
-    double price = 0;
-
 
 }
-
-
 <!-- shopping card start -->
 <div class="shopping-card-container">
     <div class="shopping-cart" style=" height: auto;">
@@ -18,7 +14,7 @@
         {
             <div class="item" style="cursor:auto">
                 <div class="buttons">
-                    
+
                     <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn" onclick="myfunc()"></span></a>
 
                     <span class="like-btn">
@@ -33,33 +29,30 @@
                     <span class="name">@item.Name</span>
                     <span>White</span>
                 </div>
-               
+
                 <div class="quantity" style="display:flex;justify-content:center;">
 
-                    <button class="plus-btn" name="button" 
-                        style="        
+                    <button class="plus-btn" name="button"
+                            style="
                         background-image: url(../img/plus.svg);
                         background-size: 10px;
                         background-repeat: no-repeat;
-                        background-position:center;" 
-                        onclick="increase()">
+                        background-position:center;"
+                            onclick="increase()">
                     </button>
                     <p class="countproduct" style="padding:3px 10px"></p>
                     <button class="minus-btn" type="button" name="button"
-                        style="        
+                            style="
                         background-image: url(../img/minus.svg);
                         background-size: 10px;
                         background-repeat: no-repeat;
-                        background-position:center;" 
-                        onclick="decrease()">
+                        background-position:center;"
+                            onclick="decrease()">
                     </button>
                 </div>
 
                 <div class="total-price"><p class="price">@item.Price</p>  AZN</div>
             </div>
-
-            price += item.Price;
-
         }
     </div>
     <div class="amountcontainer">
@@ -70,16 +63,15 @@
             </div>
             <div class="count" style=" margin: 25px 0;">
                 <p style="padding-left: 0;">@Model.Count()</p>
-                <div 
-                     style="        
+                <div style="
                            display: flex;
                            width: 110px;
                            ">
                     <p class="totalamount" style=" padding: 10px 0px;"></p>
                     <p style="padding-left: 5px;">Azn</p>
                 </div>
-                    
-                
+
+
             </div>
         </div>
         <button>Alış verişə davam et</button>
@@ -90,3 +82,120 @@
 
 
 <!-- shopping card end -->
+@section Scripts{
+    <script>
+        const name = document.querySelectorAll(".name");
+        const count = document.querySelectorAll(".countproduct");
+        const price = document.querySelectorAll(".price");
+        let totalamount = document.querySelector(".totalamount");
+
+        totalamount.innerHTML = 0;
+
+        if (!JSON.parse(localStorage.getItem("basket"))) {
+            const arr = [];
+            for (let i = 0; i < name.length; i++) {
+                const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
+                arr.push(obj);
+                localStorage.setItem("basket", JSON.stringify(arr));
+
+                totalamount.innerHTML = parseInt(totalamount.innerHTML) + parseInt(price[i].innerHTML);
+                localStorage.setItem("totalamount", totalamount.innerHTML)
+            }
+            const basket = JSON.parse(localStorage.getItem("basket"));
+            basket.map((prod) => {
+                prod.productCount = 1;
+                for (let i = 0; i < count.length; i++) {
+                    count[i].innerHTML = prod.productCount;
+                }
+            })
+            localStorage.setItem("basket", JSON.stringify(basket));
+        }
+        else {
+            const basket = JSON.parse(localStorage.getItem("basket"));
+            const arr = [];
+
+            for (let i = 0; i < name.length; i++) {
+
+                if (basket.length === name.length) {
+                    count[i].innerHTML = basket[i].productCount;
+                    totalamount.innerHTML = localStorage.getItem("totalamount");
+
+                }
+                else {
+                    for (let i = 0; i < name.length + 1; i++) {
+                        if (arr.length == 0) {
+                            for (let i = 0; i < basket.length; i++) {
+                                arr.push(basket[i]);
+                            }
+                        }
+                        if (!arr.find(a => a.productName == name[i].innerHTML)) {
+                            console.log(arr);
+                            const obj = { productName: name[i].innerHTML, productCount: 1, productPrice: price[i].innerHTML };
+                            arr.push(obj);
+                            localStorage.setItem("basket", JSON.stringify(arr));
+                            totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) + parseInt(obj.productPrice);
+                            localStorage.setItem("totalamount", totalamount.innerHTML);
+                            const basket2 = JSON.parse(localStorage.getItem("basket"));
+                            for (let i = 0; i < basket2.length; i++) {
+                                count[i].innerHTML = basket2[i].productCount;
+
+                            }
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+
+        function increase() {
+            const basket = JSON.parse(localStorage.getItem("basket"));
+            for (var i = 0; i < basket.length; i++) {
+                if (event.target.parentElement.parentElement.children[2].children[0].innerHTML == basket[i].productName) {
+                    event.target.nextElementSibling.innerHTML = (parseInt(basket[i].productCount) + 1).toString();
+                    totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) + parseInt(basket[i].productPrice);
+                    localStorage.setItem("totalamount", totalamount.innerHTML)
+                }
+            }
+
+            const arr = [];
+            for (let i = 0; i < name.length; i++) {
+                const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
+                arr.push(obj);
+                localStorage.setItem("basket", JSON.stringify(arr));
+            }
+        };
+        function decrease() {
+            const basket = JSON.parse(localStorage.getItem("basket"));
+            for (var i = 0; i < basket.length; i++) {
+                if (event.target.parentElement.parentElement.children[2].children[0].innerHTML == basket[i].productName) {
+                    event.target.previousElementSibling.innerHTML = (parseInt(basket[i].productCount) - 1).toString();
+                    totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) - parseInt(basket[i].productPrice);
+                    localStorage.setItem("totalamount", totalamount.innerHTML)
+                }
+            }
+
+            const arr = [];
+            for (let i = 0; i < name.length; i++) {
+                const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
+                arr.push(obj);
+                localStorage.setItem("basket", JSON.stringify(arr));
+            }
+        };
+        function myfunc() {
+            const basket = JSON.parse(localStorage.getItem("basket"));
+            const deletedProduct = basket.find(prod => prod.productName == event.target.parentElement.parentElement.nextElementSibling.nextElementSibling.children[0].innerHTML);
+            totalamount.innerHTML = parseInt(totalamount.innerHTML) - parseInt(deletedProduct.productPrice) * parseInt(deletedProduct.productCount);
+            localStorage.setItem("totalamount", totalamount.innerHTML)
+            basket.splice(basket.indexOf(deletedProduct), 1)
+            if (basket.length === 0) {
+                localStorage.clear();
+            }
+            else {
+                localStorage.setItem("basket", JSON.stringify(basket));
+            }
+
+        }
+    </script>
+}

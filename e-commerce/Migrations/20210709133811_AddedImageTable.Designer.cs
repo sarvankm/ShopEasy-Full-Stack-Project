@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_commerce.Data;
 
 namespace e_commerce.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210709133811_AddedImageTable")]
+    partial class AddedImageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +105,7 @@ namespace e_commerce.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("e_commerce.Models.Product", b =>
@@ -119,6 +121,9 @@ namespace e_commerce.Migrations
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -270,7 +275,7 @@ namespace e_commerce.Migrations
             modelBuilder.Entity("e_commerce.Models.ProductColor", b =>
                 {
                     b.HasOne("e_commerce.Models.Color", "Color")
-                        .WithMany("ProductColorImages")
+                        .WithMany("ProductColors")
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -300,7 +305,7 @@ namespace e_commerce.Migrations
 
             modelBuilder.Entity("e_commerce.Models.Color", b =>
                 {
-                    b.Navigation("ProductColorImages");
+                    b.Navigation("ProductColors");
                 });
 
             modelBuilder.Entity("e_commerce.Models.Product", b =>

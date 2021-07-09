@@ -10,7 +10,7 @@ namespace e_commerce.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string ColorCode { get; set; }
-        public ICollection<ProductColor> ProductColors { get; set; }
+        public ICollection<ProductColor> ProductColorImages { get; set; }
 
     }
 }

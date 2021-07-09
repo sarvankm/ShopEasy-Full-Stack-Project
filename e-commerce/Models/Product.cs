@@ -10,7 +10,6 @@ namespace e_commerce.Models
     public class Product
     {
         public int Id { get; set; }
-        public string Image { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
 
@@ -25,6 +24,9 @@ namespace e_commerce.Models
         [ForeignKey("CategoryChildId")]
         public int? CategoryChildId { get; set; }
         public virtual CategoryChild CategoryChild { get; set; }
-        public ICollection<ProductColor> ProductColors { get; set; }
+        public ICollection<ProductColor> ProductColors{ get; set; }
+        public ICollection<Image> Images { get; set; }
+
+
     }
 }

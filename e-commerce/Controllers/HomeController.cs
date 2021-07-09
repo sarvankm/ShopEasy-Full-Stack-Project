@@ -3,6 +3,7 @@ using e_commerce.Models;
 using e_commerce.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,14 @@ namespace e_commerce.Controllers
             _count = _db.Products.Count();
 
         }
-        public IActionResult Index()
+        public IActionResult Index(int count=4)
         {
             ViewBag.ProductCount = _count;
 
             return View(new HomeVM { 
                 Sliders=_db.Sliders,
-                Categories=_db.Categories
+                Categories=_db.Categories,
+                Products=_db.Products.Include(p=>p.Images).Take(count)
             });
         }
         public IActionResult Load(int skip)
@@ -38,7 +40,7 @@ namespace e_commerce.Controllers
                 return NotFound();
             }
 
-            IEnumerable<Product> model = _db.Products.Skip(skip).Take(4);
+            IEnumerable<Product> model = _db.Products.Include(p=>p.Images).Skip(skip).Take(4);
 
             return PartialView("_ProductPartial", model);
         }
@@ -100,7 +102,7 @@ namespace e_commerce.Controllers
                     Product dbProduct = await _db.Products.FindAsync(item.Id);
 
                     item.Price = dbProduct.Price;
-                    item.Image = dbProduct.Image;
+                    item.Image = _db.Images.FirstOrDefault(i => i.ProductId == item.Id).ImageName;
                     item.Name = dbProduct.Name;
                 }
             }

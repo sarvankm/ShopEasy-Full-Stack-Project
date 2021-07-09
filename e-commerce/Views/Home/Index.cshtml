@@ -79,7 +79,43 @@
      data-aos-once="true" data-aos-anchor-placement="top-center">
     <h3>YENİ MƏHSULLAR</h3>
     <div class="forflex" id="productlist" style=" max-width: initial;">
-        @await Component.InvokeAsync("Product")
+        @foreach (Product item in Model.Products)
+        {
+            <div class="productcard" style="position:relative;margin-top:34px">
+                <a href="#index.html"
+                   style="
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            z-index: 100;
+            color: #6D757A;
+            width:auto !important;
+                "> <i class="far fa-heart"></i></a>
+                <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
+                <p>@item.Name</p>
+                <div class="pricecontainer">
+                    <p class="price">@item.Price</p>
+                    <p class="currency">AZN</p>
+                </div>
+                <div class="buttoncontainer">
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
+                       style="
+                width: auto !important;
+                padding: 5px 30px;
+                color: white;
+                border-radius: 20px;
+                background-color: #6D757A;
+                margin-bottom:10px
+                    ">
+                        Məhsula bax
+                    </a>
+                    <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                        Karta əlavə et
+                    </a>
+                </div>
+            </div>
+        }
+
 
     </div>
     <input type="hidden" id="productcount" value="@ViewBag.ProductCount" />

@@ -20,6 +20,7 @@ namespace e_commerce.Data
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Specs> Specs { get; set; }
         public virtual DbSet<ProductColor> ProductColors { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
 
 
     }
