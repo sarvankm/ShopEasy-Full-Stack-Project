@@ -47,3 +47,6 @@ $(function () {
   };
   var accordion = new Accordion($(".accordion-container"), false);
 });
+//$(".fa-heart").on("click", function () {
+//    $(this).toggle().css("color", "red");
+//})

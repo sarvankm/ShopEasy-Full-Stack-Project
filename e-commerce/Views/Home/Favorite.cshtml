@@ -1,0 +1,52 @@
+﻿@model List<FavoriteVM>
+@{
+    ViewData["Title"] = "Favorite";
+}
+
+<div class="productcontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
+     data-aos-once="true" data-aos-anchor-placement="top-center">
+    <h3>SEÇİLMİŞLƏR</h3>
+    <div class="forflex" style="max-width:1270px">
+        @foreach (FavoriteVM item in Model)
+        {
+            <div class="productcard" style="position:relative;margin-top:34px">
+                <a 
+                   style="
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    z-index: 100;
+                    color: #6D757A;
+                    width:auto !important;"
+                   asp-controller="Home" asp-action="RemoveFavoriteProduct" asp-route-id="@item.Id"
+                   > <img src="~/img/delete-icn.svg" alt="" style="transform:none"/></a>
+                <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Image" alt="" style="margin-top:30px" /></a>
+                <p>@item.Name</p>
+                <div class="pricecontainer">
+                    <p class="price">@item.Price</p>
+                    <p class="currency">AZN</p>
+                </div>
+                <div class="buttoncontainer">
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
+                       style="
+                width: auto !important;
+                padding: 5px 30px;
+                color: white;
+                border-radius: 20px;
+                background-color: #6D757A;
+                margin-bottom:10px
+                    ">
+                        Məhsula bax
+                    </a>
+                    <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                        Karta əlavə et
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="buttoncontainer">
+        <button class="loadmore">Daha cox</button>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@model ContactVM
+@{
+    ViewData["Title"] = "Index";
+    int counter = 0;
+}
+
+<div style="  box-shadow: 0 0 8px 0 #dadcdd;">
+    <div class="contactcontainer">
+        <form method="post" asp-controller="Contact" asp-action="Form">
+            <label asp-for="@Model.ContactForm.Name">Ad</label>
+            <input asp-for="@Model.ContactForm.Name" placeholder="Ad">
+            <span class="text-danger" asp-validation-for="@Model.ContactForm.Name"></span>
+
+            <label asp-for="@Model.ContactForm.Surname">Soyad</label>
+            <input asp-for="@Model.ContactForm.Surname" placeholder="Soyad">
+            <span class="text-danger" asp-validation-for="@Model.ContactForm.Surname"></span>
+
+            <label asp-for="@Model.ContactForm.Email">E-poçt</label>
+            <input asp-for="@Model.ContactForm.Email" placeholder="E-poçt">
+            <span class="text-danger" asp-validation-for="@Model.ContactForm.Email"></span>
+
+            <label asp-for="@Model.ContactForm.PhoneNumber">Telefon nömrəsi</label>
+            <input asp-for="@Model.ContactForm.PhoneNumber" class="number" value="+994" maxlength="13">
+            <span class="text-danger" asp-validation-for="@Model.ContactForm.PhoneNumber"></span>
+
+            <textarea asp-for="@Model.ContactForm.Message" cols="8" rows="4" placeholder="Message"></textarea>
+            <span class="text-danger" asp-validation-for="@Model.ContactForm.Message"></span>
+
+            <button type="submit">Göndər</button>
+        </form>
+        <div class="carouselcontainer">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false" data-wrap="true">
+                <div class="carousel-inner">
+
+                    @foreach (Contact item in Model.Contacts)
+                    {
+                        if (counter == 0)
+                        {
+                            <div class="carousel-item active">
+                                <div class="filials">
+                                    <h5>@item.Branch</h5>
+                                    <p>Növbəti filial</p>
+                                </div>
+                                <div class="contact">
+                                    <div class="phone">
+                                        <i class="fas fa-phone-alt"></i>
+                                        <p>@item.ContactNumber</p>
+                                    </div>
+                                    <div class="mail">
+                                        <i class="fas fa-envelope"></i>
+                                        <p>@item.ContactEmail</p>
+                                    </div>
+                                    <div class="location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <p>@item.ContactLocation</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="carousel-item">
+                                <div class="filials">
+                                    <h5>@item.Branch</h5>
+                                    <p>Növbəti filial</p>
+                                </div>
+                                <div class="contact">
+                                    <div class="phone">
+                                        <i class="fas fa-phone-alt"></i>
+                                        <p>@item.ContactNumber</p>
+                                    </div>
+                                    <div class="mail">
+                                        <i class="fas fa-envelope"></i>
+                                        <p>@item.ContactEmail</p>
+                                    </div>
+                                    <div class="location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <p>@item.ContactLocation</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        counter++;
+
+                    }
+                </div>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d388948.3248466814!2d49.57477494848202!3d40.394254379738996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd6211cf9%3A0x343f6b5e7ae56c6b!2sBaku!5e0!3m2!1sen!2s!4v1624016019397!5m2!1sen!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+

@@ -1,10 +1,10 @@
-﻿<header>
+﻿
+<header>
     <div class="headercolor">
         <div class="firstpartheader">
             <div class="linkcontainer d-flex">
                 <a asp-controller="Home" asp-action="Index" class="mainpage">Ana səhifə</a>
-                <a href="~/contact.html">Əlaqə</a>
-                <a href="" class="lastlink">Outlet</a>
+                <a asp-controller="Contact" asp-action="Index">Əlaqə</a>
                 <p>|</p>
             </div>
             <div class="logocontainer">
@@ -75,17 +75,13 @@
             <a href="~/form.html">
                 <i class="far fa-user"></i>
             </a>
-            <a href="">
-                <i class="fas fa-balance-scale-left"></i>
-                <div class="numberofproduct">0</div>
-            </a>
-            <a href="~/favorites.html">
+            <a asp-controller="Home" asp-action="Favorite">
                 <i class="far fa-heart"></i>
-                <div class="numberofproduct">0</div>
+                <div class="numberofproduct">@ViewBag.Count[1]</div>
             </a>
             <a asp-controller="Home" asp-action="Basket" class="basket">
                 <i class="fas fa-shopping-basket"></i>
-                <div class="numberofproduct">@ViewBag.BasketCount</div>
+                <div class="numberofproduct">@ViewBag.Count[0]</div>
             </a>
         </div>
 

@@ -14,14 +14,28 @@ namespace e_commerce.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            ViewBag.BasketCount = 0;
+            List<int> Count = new List<int>();
+         
             if (Request.Cookies["basket"] != null)
             {
                 List<BasketVM> products = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
-                ViewBag.BasketCount = products.Count;
+                Count.Add(products.Count());
             }
-
-            return View(await Task.FromResult(ViewBag.BasketCount));
+            else
+            {
+                Count.Add(0);
+            }
+            if (Request.Cookies["favorite"] != null)
+            {
+                List<FavoriteVM> products = JsonConvert.DeserializeObject<List<FavoriteVM>>(Request.Cookies["favorite"]);
+                Count.Add(products.Count());
+            }
+            else
+            {
+                Count.Add(0);
+            }
+            ViewBag.Count = Count;
+            return View(await Task.FromResult(ViewBag.Count));
         }
     }
 }

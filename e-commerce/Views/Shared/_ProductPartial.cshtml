@@ -3,16 +3,17 @@
 @foreach (Product item in Model)
 {
     <div class="productcard" style="position:relative;margin-top:34px">
-        <a href="#index.html"
+        <a 
            style="
             position: absolute;
             top: 10px;
             right: 15px;
             z-index: 100;
             color: #6D757A;
-            width:auto !important;
-                "> <i class="far fa-heart"></i></a>
-        <a href="#"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
+            width:auto !important;"
+           asp-controller="Home" asp-action="AddToFavorite" asp-route-id="@item.Id"
+           > <i class="far fa-heart"></i></a>
+        <a href="#"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px;" /></a>
         <p>@item.Name</p>
         <div class="pricecontainer">
             <p class="price">@item.Price</p>

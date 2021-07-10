@@ -22,33 +22,8 @@ a {
   width: 100%;
   height: 485px; }
 
-.categorycontainer {
-  display: flex;
-  max-width: 1270px;
-  margin: 0 auto;
-  justify-content: space-between;
-  margin-top: 50px;
-  margin-bottom: 90px; }
 
-.categorycontainer .category {
-  width: 15%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  padding-top: 20px;
-  border: 1px solid #6d757a;
-  background: #6d757a;
-  color: white;
-  transition: 0.2s ease-in-out; }
-  .categorycontainer .category:hover {
-    color: #6d757a;
-    background: white; }
-  .categorycontainer .category span {
-    font-size: 40px; }
-  .categorycontainer .category p {
-    text-align: center; }
+
 
 .secondcategorycontainer {
   max-width: 1270px;
@@ -66,7 +41,7 @@ a {
     width: 31%; }
   .secondcategorycontainer h3 {
     text-align: center;
-    padding-bottom: 85px; }
+    padding: 85px 0; }
   .secondcategorycontainer img {
     width: 100%; }
   .secondcategorycontainer .secondpartcategory.phone img {

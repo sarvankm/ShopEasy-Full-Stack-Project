@@ -44,6 +44,23 @@ namespace e_commerce.Controllers
 
             return PartialView("_ProductPartial", model);
         }
+        public async Task<IActionResult> Buy(int? id)
+        {
+            if (id == null) return NotFound();
+            Product product = await _db.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            Order order = new Order
+            {
+                Name = product.Name,
+                Price = product.Price,
+                Count = 1
+
+            };
+            await _db.Orders.AddAsync(order);
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
             public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id == null) return NotFound();
@@ -80,7 +97,7 @@ namespace e_commerce.Controllers
             string basket = JsonConvert.SerializeObject(products);
             Response.Cookies.Append("basket", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
-            return RedirectToAction(nameof(Index));
+            return NoContent();
         }
 
         public async Task<IActionResult> Basket(int value)
@@ -126,6 +143,90 @@ namespace e_commerce.Controllers
             Response.Cookies.Append("basket", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
             return RedirectToAction("Basket");
+
+
+        }
+        public async Task<IActionResult> AddToFavorite(int? id)
+        {
+            if (id == null) return NotFound();
+            Product product = await _db.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            List<FavoriteVM> products;
+            string existFavorite = Request.Cookies["favorite"];
+            if (existFavorite == null)
+            {
+                products = new List<FavoriteVM>();
+            }
+            else
+            {
+                products = JsonConvert.DeserializeObject<List<FavoriteVM>>(existFavorite);
+            }
+
+            FavoriteVM existProduct = products.FirstOrDefault(p => p.Id == id);
+            if (existProduct == null)
+            {
+                FavoriteVM newProduct = new FavoriteVM
+                {
+                    Id = product.Id,
+                    Count = 1
+                };
+                products.Add(newProduct);
+            }
+            else
+            {
+                existProduct.Count++;
+            }
+
+
+            string basket = JsonConvert.SerializeObject(products);
+            Response.Cookies.Append("favorite", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Favorite(int value)
+        {
+            //Session Get
+            //string session = HttpContext.Session.GetString("Freedi");
+            //Cookie Get
+            //string cookie = Request.Cookies["Sarvan"];
+
+            ViewBag.count = value;
+
+            string basket = Request.Cookies["favorite"];
+            List<FavoriteVM> products = new List<FavoriteVM>();
+            if (basket != null)
+            {
+                products = JsonConvert.DeserializeObject<List<FavoriteVM>>(basket);
+                foreach (FavoriteVM item in products)
+                {
+                    Product dbProduct = await _db.Products.FindAsync(item.Id);
+
+                    item.Price = dbProduct.Price;
+                    item.Image = _db.Images.FirstOrDefault(i => i.ProductId == item.Id).ImageName;
+                    item.Name = dbProduct.Name;
+                }
+            }
+
+            return View(products);
+        }
+        public IActionResult RemoveFavoriteProduct(int? id)
+        {
+            List<FavoriteVM> products = new List<FavoriteVM>();
+            Product product = _db.Products.Find(id);
+
+            string existBasket = Request.Cookies["favorite"];
+            products = JsonConvert.DeserializeObject<List<FavoriteVM>>(existBasket);
+
+            FavoriteVM existProduct = products.FirstOrDefault(p => p.Id == id);
+
+            products.Remove(existProduct);
+
+            string basket = JsonConvert.SerializeObject(products);
+
+            Response.Cookies.Append("favorite", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+
+            return RedirectToAction("Favorite");
 
 
         }

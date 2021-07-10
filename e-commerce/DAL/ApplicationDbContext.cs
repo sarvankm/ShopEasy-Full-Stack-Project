@@ -21,6 +21,10 @@ namespace e_commerce.Data
         public virtual DbSet<Specs> Specs { get; set; }
         public virtual DbSet<ProductColor> ProductColors { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<ContactForm> ContactForms { get; set; }
+
 
 
     }

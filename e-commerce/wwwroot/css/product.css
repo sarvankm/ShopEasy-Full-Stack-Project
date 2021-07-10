@@ -34,13 +34,24 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none; }
-
+.line-gray {
+    background: #F1F3F4;
+}
+.features-review-tabs li {
+    padding-top: 15px;
+    padding-left:10px;
+}
+.features-review-tabs.specs li{
+    width:50%;
+    margin-left:-56px;
+}
 .product-description h1 {
-  font-weight: 300;
-  font-size: 52px;
-  color: #43484d;
-  letter-spacing: -2px;
-  margin: 30px 0px; }
+    font-weight: 300;
+    font-size: 52px;
+    color: #43484d;
+    letter-spacing: -2px;
+    margin: 30px 0px;
+}
 
 .product-description p {
   font-size: 16px;
