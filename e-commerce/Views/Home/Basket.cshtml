@@ -12,7 +12,7 @@
         </div>
         @foreach (BasketVM item in Model)
         {
-            <div class="item" style="cursor:auto">
+            <div class="item shopping" style="cursor:auto">
                 <div class="buttons">
 
                     <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn" onclick="myfunc()"></span></a>

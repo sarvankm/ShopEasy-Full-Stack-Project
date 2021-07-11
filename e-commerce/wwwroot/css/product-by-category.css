@@ -30,17 +30,23 @@
   padding: 20px 0; }
 
 .parrafo {
-  color: #787887;
   line-height: 17px;
   position: relative;
   top: -20px;
-  height: 200px;
   opacity: 0;
   transition: top 0.4s, opacity 0.4s;
   z-index: 1; }
-  .parrafo p {
-    text-align: left !important; }
-
+.parrafo p {
+text-align: left !important; }
+.parrafo a {
+    color: #787887;
+}
+.parrafo a:hover {
+    color: #3B93F2;
+}
+.parrafo a:focus {
+    color: #3B93F2;
+}
 .parrafo.pricerange {
   height: 100px; }
 
@@ -80,8 +86,7 @@ li {
   opacity: 1;
   top: 0; }
 
-.active {
-  height: 200px; }
+
 
 .productcontainer .forflex {
   max-width: 958px; }
@@ -244,3 +249,4 @@ li {
 [disabled].noUi-origin,
 [disabled] .noUi-handle {
   cursor: not-allowed; }
+/*================================*/

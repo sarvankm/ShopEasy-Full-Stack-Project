@@ -12,7 +12,6 @@ namespace e_commerce.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-
         [ForeignKey("SpecsId")]
         public int? SpecsId { get; set; }
         public virtual Specs Specs { get; set; }
@@ -22,8 +21,10 @@ namespace e_commerce.Models
         public virtual Category Category { get; set; }
         [Required]
         [ForeignKey("CategoryChildId")]
-        public int? CategoryChildId { get; set; }
+        public int CategoryChildId { get; set; }
         public virtual CategoryChild CategoryChild { get; set; }
+        public int? BrendId { get; set; }
+        public virtual Brend Brend { get; set; }
         public ICollection<ProductColor> ProductColors{ get; set; }
         public ICollection<Image> Images { get; set; }
 

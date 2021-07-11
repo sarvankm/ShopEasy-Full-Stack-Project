@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Product>
+@foreach (Product item in Model)
+{
+
+    <li>
+        <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id">
+            <img src="~/img/@item.Images.ToList()[0].ImageName" alt="" />
+            <p>@item.Name</p>
+            <p class="searchprice">@item.Price azn</p>
+        </a>
+    </li>
+
+    
+}

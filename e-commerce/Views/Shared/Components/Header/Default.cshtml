@@ -62,10 +62,16 @@
             <a asp-controller="Home" asp-action="Index">
                 <img src="~/img/logo.png" alt="" />
             </a>
-            <div style="width: 77%;">
-                <input type="text" id="searchInput" placeholder="Search..">
 
-            </div>
+                <div class="searchcontainer">
+                    <input type="text" id="searchInput" placeholder="Search..">
+                    <div class="result">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            
+
 
 
         </div>

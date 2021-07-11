@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace e_commerce.Controllers
 {
     public class HomeController : Controller
@@ -102,10 +103,7 @@ namespace e_commerce.Controllers
 
         public async Task<IActionResult> Basket(int value)
         {
-            //Session Get
-            //string session = HttpContext.Session.GetString("Freedi");
-            //Cookie Get
-            //string cookie = Request.Cookies["Sarvan"];
+
 
             ViewBag.count = value;
             
@@ -186,10 +184,7 @@ namespace e_commerce.Controllers
         }
         public async Task<IActionResult> Favorite(int value)
         {
-            //Session Get
-            //string session = HttpContext.Session.GetString("Freedi");
-            //Cookie Get
-            //string cookie = Request.Cookies["Sarvan"];
+      
 
             ViewBag.count = value;
 
@@ -227,8 +222,17 @@ namespace e_commerce.Controllers
             Response.Cookies.Append("favorite", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
             return RedirectToAction("Favorite");
-
-
+        }
+        public IActionResult Search(string search)
+        {
+            IEnumerable<Product> model = _db.Products
+                .Include(p => p.Images)
+                .Where(p => p.Name.ToLower().Contains(search.ToLower()))
+                .OrderByDescending(p => p.Id)
+                .Take(10);
+                
+            var a = model.Count();
+            return PartialView("_SearchPartial", model);
         }
     }
 }

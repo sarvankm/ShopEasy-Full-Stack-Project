@@ -24,6 +24,7 @@ namespace e_commerce.Data
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<ContactForm> ContactForms { get; set; }
+        public virtual DbSet<Brend> Brends { get; set; }
 
 
 

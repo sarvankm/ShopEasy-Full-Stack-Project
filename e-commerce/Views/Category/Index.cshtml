@@ -1,7 +1,164 @@
-﻿
+﻿@model CategoryVM
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="productcontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
+     data-aos-once="true" data-aos-anchor-placement="top-center">
+    <div style="display: flex;">
+        <div class="cuerpo">
+            <div class="texto">
+                <ul class="lista">
+                    <li class="item">
+                        <div class="item_header">
+                            <h4 class="pregunta">Kateqoriya</h4>
+                            <i class="fa fa-angle-down icon"></i>
+                        </div>
+                        <div class="parrafo">
+                            @foreach (CategoryChild item in Model.CategoryChildren)
+                            {
+                
+                            <a asp-action="Index" asp-route-childid="@item.Id" style="color:@ViewBag.CategoryColor">
+                                <div style="display: flex;justify-content: space-between;">
+                                    <p>@item.Name</p>
+                                    <p>@item.Products.Count()</p>
+                                </div>
+                            </a>
+                            }
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item_header">
+                            <h4 class="pregunta">Brend</h4>
+                            <i class="fa fa-angle-down icon"></i>
+                        </div>
+                        <div class="parrafo">
+                            @foreach (Brend item in Model.Brends)
+                            {
+                                <a asp-action="Index" asp-route-brendid="@item.Id" asp-route-childid="@item.CategoryChildId">
+                                    <div style="display: flex;justify-content: space-between;">
+                                        <div style="display: flex;
+                                           justify-content:center;
+                                           align-items:baseline;
+                                           ">
+                                            <input type="radio" name="brand" id="brand-0" style="background-color: #6D757A" @ViewBag.Checked/>
+                                            <label for="brand-0" style="padding-left:10px">@item.Name</label>
+                                        </div>
+                                        <p style="text-align: right;">@item.Products.Count()</p>
+                                    </div>
+                                </a>
+                            }
+                    
+
+
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item_header">
+                            <h4 class="pregunta">Qiymət</h4>
+                            <i class="fa fa-angle-down icon"></i>
+                        </div>
+                        <div class="parrafo pricerange">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="slider-range"></div>
+                                    </div>
+                                </div>
+                                <div class="row slider-labels">
+                                    <div class="col-xs-6 caption">
+                                        <strong>Min:</strong> <span id="slider-range-value1"></span>
+                                    </div>
+                                    <div class="col-xs-6 text-right caption">
+                                        <strong>Max:</strong> <span id="slider-range-value2"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form>
+                                            <input type="hidden" name="min-value" value="">
+                                            <input type="hidden" name="max-value" value="">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="item">
+                        <div class="item_header">
+                            <h4 class="pregunta">Rəng</h4>
+                            <i class="fa fa-angle-down icon"></i>
+                        </div>
+                        <div class="parrafo">
+                            <div style="display: flex;justify-content: space-between;">
+                                <p>Smartfonlar</p>
+                                <p style="text-align: right;">1</p>
+                            </div>
+                            <div style="display: flex;justify-content: space-between;">
+                                <p>Smartfonlar</p>
+                                <p>1</p>
+                            </div>
+                            <div style="display: flex;justify-content: space-between;">
+                                <p>Smartfonlar</p>
+                                <p>1</p>
+                            </div>
+                            <div style="display: flex;justify-content: space-between;">
+                                <p>Smartfonlar</p>
+                                <p>1</p>
+                            </div>
+                            <div style="display: flex;justify-content: space-between;">
+                                <p>Smartfonlar</p>
+                                <p>1</p>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="forflex">
+            @foreach (Product item in Model.Products)
+            {
+                <div class="productcard" style="position:relative;width:32%">
+                    <a style="
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    z-index: 100;
+                    color: #6D757A;
+                    width:auto !important;"
+                       asp-action="AddToFavorite" asp-route-id="@item.Id"> <i class="far fa-heart"></i></a>
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
+                    <p>@item.Name</p>
+                    <div class="pricecontainer">
+                        <p class="price">@item.Price</p>
+                        <p class="currency">AZN</p>
+                    </div>
+                    <div class="buttoncontainer">
+                        <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
+                           style="
+                width: auto !important;
+                padding: 5px 30px;
+                color: white;
+                border-radius: 20px;
+                background-color: #6D757A;
+                margin-bottom:10px
+                    ">
+                            Məhsula bax
+                        </a>
+                        <a asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                            Karta əlavə et
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="buttoncontainer">
+        <button class="loadmore">Daha çox</button>
+    </div>
+</div>
 

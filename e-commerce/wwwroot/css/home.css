@@ -166,104 +166,196 @@ input:focus {
   transition: width 0.8s ease-in-out;
   outline: none;
   opacity: 0.9; }
-
-@media only screen and (max-width: 1300px) {
-  .productcontainer,
-  .secondcategorycontainer,
-  .categorycontainer {
-    max-width: 1290px;
-    padding: 20px !important; } }
-
-@media only screen and (max-width: 992px) {
-  .secondcategorycontainer .secondpartcategory.phone img {
-    width: 50%;
-    margin-left: 25%; }
-  #content h4,
-  #content p {
-    font-size: 14px; }
-  #nav-icon1 {
-    display: block; }
-  .categorycontainer {
-    display: none; }
-  .carouselcontainer img {
-    height: 340px; }
-  .secondcategorycontainer h3,
-  .productcontainer h3 {
-    padding-top: 90px;
-    padding-bottom: 40px;
-    margin: 0;
-    font-size: 22px; }
-  .productcontainer,
-  .secondcategorycontainer,
-  .categorycontainer,
-  .carouselcontainer {
-    max-width: 912px !important; }
-  .secondcategorycontainer a {
-    width: 48%;
-    margin-top: 44px; }
-  .productcontainer .forflex .productcard {
-    width: 32%; } }
-
-@media only screen and (max-width: 768px) {
-  .productcontainer,
-  .secondcategorycontainer,
-  .categorycontainer,
-  .carouselcontainer {
-    max-width: 768px !important; }
-  .productcontainer .forflex .productcard {
-    width: 48%;
-    margin-top: 25px; } }
-
-@media only screen and (max-width: 568px) {
-  .productcontainer,
-  .secondcategorycontainer,
-  .categorycontainer,
-  .carouselcontainer {
-    max-width: 568px !important; }
-  .secondcategorycontainer .secondpartcategory.phone img {
-    width: 60%;
-    margin-top: -6%;
-    margin-left: 20%; }
-  .secondcategorycontainer .secondpartcategory.tv img {
-    width: 90%;
-    margin-left: 9px;
-    margin-top: -12px; }
-  .secondcategorycontainer p {
-    font-size: 17px; }
-  .secondcategorycontainer .secondpartcategory .accesories .firstimg {
-    margin-left: 14px; }
-  .secondcategorycontainer .secondpartcategory .accesories .secimg {
-    margin-left: -60px;
-    margin-top: -12px; }
-  .productcontainer .forflex {
-    justify-content: center; }
-    .productcontainer .forflex .productcard {
-      width: 60%;
-      margin-top: 25px; }
-  .carouselcontainer img {
-    width: 530px;
-    height: 201px; } }
-
-@media only screen and (max-width: 360px) {
-  .productcontainer,
-  .secondcategorycontainer,
-  .categorycontainer,
-  .carouselcontainer {
-    max-width: 340px !important; }
-  .secondcategorycontainer .secondpartcategory .accesories .secimg {
-    margin-left: -95px;
-    margin-top: -25px; }
-  .secondcategorycontainer p {
-    font-size: 20px; }
-  .productcontainer h3 {
-    padding: 65px; }
-  .carouselcontainer img {
-    height: 140px; }
-  .productcontainer .forflex .productcard {
-    width: 100%; }
-  .secondcategorycontainer a {
+.secondpartheader .hamburgermenu #searchInput:focus {
+    border-radius:inherit;
+}
+.searchcontainer {
+    width: 77%;
+}
+.result {
+    position: relative
+}
+.result ul {
+    padding-left: 0;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
     width: 100%;
-    margin-top: 44px; } }
-.active{
+    height:216px;
+    overflow-y:auto;
+}
+    .result ul li {
+        padding: 0 10px;
+        border-bottom:1px solid black;
+        background:white;
+        height:70px;
+    }
+    .result ul li a{
+        display: flex;
+        color:black;
+    }
+        .result ul li p{
+            margin-top:0;
+        }
+        .result ul img {
+            height: 100%;
+            width: 5%;
+        }
+    .result .searchprice {
+        margin-inline-start: auto;
+    }
+    @media only screen and (max-width: 1300px) {
+        .productcontainer, .secondcategorycontainer, .categorycontainer {
+            max-width: 1290px;
+            padding: 20px !important;
+        }
+    }
+
+    @media only screen and (max-width: 992px) {
+        .secondcategorycontainer .secondpartcategory.phone img {
+            width: 50%;
+            margin-left: 25%;
+        }
+
+        #content h4,
+        #content p {
+            font-size: 14px;
+        }
+
+        #nav-icon1 {
+            display: block;
+        }
+
+        .categorycontainer {
+            display: none;
+        }
+
+        .carouselcontainer img {
+            height: 340px;
+        }
+
+        .secondcategorycontainer h3,
+        .productcontainer h3 {
+            padding-top: 90px;
+            padding-bottom: 40px;
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .productcontainer,
+        .secondcategorycontainer,
+        .categorycontainer,
+        .carouselcontainer {
+            max-width: 912px !important;
+        }
+
+            .secondcategorycontainer a {
+                width: 48%;
+                margin-top: 44px;
+            }
+
+            .productcontainer .forflex .productcard {
+                width: 32%;
+            }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .productcontainer,
+        .secondcategorycontainer,
+        .categorycontainer,
+        .carouselcontainer {
+            max-width: 768px !important;
+        }
+
+            .productcontainer .forflex .productcard {
+                width: 48%;
+                margin-top: 25px;
+            }
+    }
+
+    @media only screen and (max-width: 568px) {
+        .productcontainer,
+        .secondcategorycontainer,
+        .categorycontainer,
+        .carouselcontainer {
+            max-width: 568px !important;
+        }
+
+            .secondcategorycontainer .secondpartcategory.phone img {
+                width: 60%;
+                margin-top: -6%;
+                margin-left: 20%;
+            }
+
+            .secondcategorycontainer .secondpartcategory.tv img {
+                width: 90%;
+                margin-left: 9px;
+                margin-top: -12px;
+            }
+
+            .secondcategorycontainer p {
+                font-size: 17px;
+            }
+
+            .secondcategorycontainer .secondpartcategory .accesories .firstimg {
+                margin-left: 14px;
+            }
+
+            .secondcategorycontainer .secondpartcategory .accesories .secimg {
+                margin-left: -60px;
+                margin-top: -12px;
+            }
+
+            .productcontainer .forflex {
+                justify-content: center;
+            }
+
+                .productcontainer .forflex .productcard {
+                    width: 60%;
+                    margin-top: 25px;
+                }
+
+            .carouselcontainer img {
+                width: 530px;
+                height: 201px;
+            }
+    }
+
+    @media only screen and (max-width: 360px) {
+        .productcontainer,
+        .secondcategorycontainer,
+        .categorycontainer,
+        .carouselcontainer {
+            max-width: 340px !important;
+        }
+
+            .secondcategorycontainer .secondpartcategory .accesories .secimg {
+                margin-left: -95px;
+                margin-top: -25px;
+            }
+
+            .secondcategorycontainer p {
+                font-size: 20px;
+            }
+
+            .productcontainer h3 {
+                padding: 65px;
+            }
+
+            .carouselcontainer img {
+                height: 140px;
+            }
+
+            .productcontainer .forflex .productcard {
+                width: 100%;
+            }
+
+            .secondcategorycontainer a {
+                width: 100%;
+                margin-top: 44px;
+            }
+    }
+
+    .active{
     height:auto;
 }

@@ -37,7 +37,7 @@
     
         @foreach (Category item in Model.Categories)
         {
-            <a href="product-by-category.html">
+            <a asp-controller="Category" asp-action="Index" asp-route-id="@item.Id">
                 <div class="secondpartcategory @item.ClassName">
                     <p data-aos="fade-right" data-aos-duration="700" data-aos-easing="ease-in-out" data-aos-once="true"
                        data-aos-anchor=".secondcategorycontainer" data-aos-anchor-placement="top-center">@item.Name</p>
