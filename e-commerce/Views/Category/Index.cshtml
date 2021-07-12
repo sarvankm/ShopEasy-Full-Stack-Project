@@ -17,13 +17,33 @@
                         <div class="parrafo">
                             @foreach (CategoryChild item in Model.CategoryChildren)
                             {
-                
-                            <a asp-action="Index" asp-route-childid="@item.Id" style="color:@ViewBag.CategoryColor">
-                                <div style="display: flex;justify-content: space-between;">
-                                    <p>@item.Name</p>
-                                    <p>@item.Products.Count()</p>
-                                </div>
-                            </a>
+                                if (ViewBag.ChildId == item.Id)
+                                {
+                                    <a asp-action="Index" asp-route-childid="@item.Id" style="color:@ViewBag.CategoryColor">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <p>@item.Name</p>
+                                            <p>@item.Products.Count()</p>
+                                        </div>
+                                    </a>
+                                }
+                                else if (ViewBag.DefaultChild == item.Name)
+                                {
+                                    <a asp-action="Index" asp-route-childid="@item.Id" style="color:@ViewBag.CategoryColor">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <p>@item.Name</p>
+                                            <p>@item.Products.Count()</p>
+                                        </div>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Index" asp-route-childid="@item.Id">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <p>@item.Name</p>
+                                            <p>@item.Products.Count()</p>
+                                        </div>
+                                    </a>
+                                }
                             }
                         </div>
                     </li>
@@ -35,20 +55,33 @@
                         <div class="parrafo">
                             @foreach (Brend item in Model.Brends)
                             {
-                                <a asp-action="Index" asp-route-brendid="@item.Id" asp-route-childid="@item.CategoryChildId">
-                                    <div style="display: flex;justify-content: space-between;">
-                                        <div style="display: flex;
-                                           justify-content:center;
-                                           align-items:baseline;
-                                           ">
-                                            <input type="radio" name="brand" id="brand-0" style="background-color: #6D757A" @ViewBag.Checked/>
-                                            <label for="brand-0" style="padding-left:10px">@item.Name</label>
+                                if (ViewBag.BrendId == item.Id)
+                                {
+                                    <a asp-action="Index" asp-route-brendid="@item.Id" asp-route-childid="@item.CategoryChildId" style="color:@ViewBag.CategoryColor">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <div style="display: flex;">
+                                                <input type="radio" name="brand" id="brand-0" style=" margin-top: 4px; background-color: #6D757A" @ViewBag.Checked />
+                                                <span  style="padding-left:10px">@item.Name</span>
+                                            </div>
+                                            <p style="text-align: right;">@item.Products.Count()</p>
                                         </div>
-                                        <p style="text-align: right;">@item.Products.Count()</p>
-                                    </div>
-                                </a>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Index" asp-route-brendid="@item.Id" asp-route-childid="@item.CategoryChildId">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <div style="display: flex;">
+                                                <input type="radio" name="brand" id="brand-0" style=" margin-top: 4px;background-color: #6D757A"/>
+                                                <span  style="padding-left:10px">@item.Name</span>
+                                            </div>
+                                            <p style="text-align: right;">@item.Products.Count()</p>
+                                        </div>
+                                    </a>
+                                }
+
                             }
-                    
+
 
 
                         </div>
@@ -81,35 +114,6 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                    </li>
-                    <li class="item">
-                        <div class="item_header">
-                            <h4 class="pregunta">Rəng</h4>
-                            <i class="fa fa-angle-down icon"></i>
-                        </div>
-                        <div class="parrafo">
-                            <div style="display: flex;justify-content: space-between;">
-                                <p>Smartfonlar</p>
-                                <p style="text-align: right;">1</p>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;">
-                                <p>Smartfonlar</p>
-                                <p>1</p>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;">
-                                <p>Smartfonlar</p>
-                                <p>1</p>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;">
-                                <p>Smartfonlar</p>
-                                <p>1</p>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;">
-                                <p>Smartfonlar</p>
-                                <p>1</p>
                             </div>
                         </div>
 

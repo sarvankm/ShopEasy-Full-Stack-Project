@@ -20,9 +20,11 @@ namespace e_commerce.Controllers
         {
             if (childid==null && brendid==null)
             {
+                ViewBag.CategoryColor = "#3B93F2";
+                ViewBag.DefaultChild = _db.CategoryChilds.FirstOrDefault(p => p.Name == "Smartfonlar").Name;
                 return View(new CategoryVM
                 {
-                    Products = _db.Products.Where(p => p.CategoryId == id).Include(p => p.Images),
+                    Products = _db.Products.Where(p => p.CategoryChild.Name == "Smartfonlar" && p.CategoryId==id).Include(p => p.Images).Take(9),
                     CategoryChildren = _db.CategoryChilds.Where(p => p.CategoryId == id).Include(c => c.Products).Include(p => p.Brends),
                     Brends = _db.Brends.Where(p => p.CategoryChild.CategoryId == id)
                 });
@@ -31,9 +33,10 @@ namespace e_commerce.Controllers
             else if(brendid==null)
             {
                 ViewBag.CategoryColor = "#3B93F2";
+                ViewBag.Childid = childid;
                 return View(new CategoryVM
                 {
-                    Products = _db.Products.Where(p => p.CategoryChildId == childid).Include(p => p.Images).Take(4),
+                    Products = _db.Products.Where(p => p.CategoryChildId == childid).Include(p => p.Images).Take(9),
                     CategoryChildren = _db.CategoryChilds.Where(p => p.CategoryId == id).Include(c => c.Products).Include(p => p.Brends),
                     Brends = _db.Brends.Where(p => p.CategoryChildId == childid)
                 });
@@ -42,10 +45,11 @@ namespace e_commerce.Controllers
             {
                 ViewBag.CategoryColor = "#3B93F2";
                 ViewBag.Checked = "checked";
-
+                ViewBag.ChildId = childid;
+                ViewBag.BrendId = brendid;
                 return View(new CategoryVM
                 {
-                    Products = _db.Products.Where(p => p.BrendId == brendid).Include(p => p.Images).Take(5),
+                    Products = _db.Products.Where(p => p.BrendId == brendid).Include(p => p.Images).Take(9),
                     CategoryChildren = _db.CategoryChilds.Where(p => p.CategoryId == id).Include(c => c.Products).Include(p => p.Brends),
                     Brends = _db.Brends.Where(p => p.CategoryChildId == childid)
                 });
