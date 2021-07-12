@@ -180,7 +180,7 @@ namespace e_commerce.Controllers
             string basket = JsonConvert.SerializeObject(products);
             Response.Cookies.Append("favorite", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
-            return RedirectToAction(nameof(Index));
+            return NoContent();
         }
         public async Task<IActionResult> Favorite(int value)
         {

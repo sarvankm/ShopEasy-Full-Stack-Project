@@ -1,6 +1,10 @@
 ﻿@model CategoryVM
 @{
     ViewData["Title"] = "Index";
+    var percent = ((int)(ViewBag.MinValue * 100) / ViewBag.MaxValue) + "%";
+    var percent2 = (int)(ViewBag.MaxValue / 100)  + "%";
+    var percent3 = (10000 - (int)(ViewBag.MaxValue))/100 + "%";
+
 }
 
 <div class="productcontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
@@ -25,6 +29,7 @@
                                             <p>@item.Products.Count()</p>
                                         </div>
                                     </a>
+                                    
                                 }
                                 else if (ViewBag.DefaultChild == item.Name)
                                 {
@@ -91,32 +96,43 @@
                             <h4 class="pregunta">Qiymət</h4>
                             <i class="fa fa-angle-down icon"></i>
                         </div>
-                        <div class="parrafo pricerange">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div id="slider-range"></div>
+                        <div class="parrafo" style="height:50px">
+                            <div slider id="slider-distance" style="margin:0">
+                                <div>
+                                    <div inverse-left style="width:@percent;"></div>
+                                    <div inverse-right style="width:@percent2;"></div>
+                                    <div range style="left:@percent;right:@percent3;"></div>
+                                    <span thumb style="left:@percent;"></span>
+                                    <span thumb style="left:@percent2;"></span>
+                                    <div sign style="left:@percent;">
+                                        <span id="value">@ViewBag.MinValue</span>
+                                    </div>
+                                    <div sign style="left:@percent2;">
+                                        <span id="value">@ViewBag.MaxValue</span>
                                     </div>
                                 </div>
-                                <div class="row slider-labels">
-                                    <div class="col-xs-6 caption">
-                                        <strong>Min:</strong> <span id="slider-range-value1"></span>
-                                    </div>
-                                    <div class="col-xs-6 text-right caption">
-                                        <strong>Max:</strong> <span id="slider-range-value2"></span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <form>
-                                            <input type="hidden" name="min-value" value="">
-                                            <input type="hidden" name="max-value" value="">
-                                        </form>
-                                    </div>
-                                </div>
+                                <input class="input1" type="range" tabindex="0" value="@ViewBag.MinValue" max="10000" min="0" step="1" oninput="
+                                        this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                                        var value=(10000/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(10000/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                                        var children = this.parentNode.childNodes[1].childNodes;
+                                        children[1].style.width=value/100+'%';
+                                        children[5].style.left=value/100+'%';
+                                        children[7].style.left=value/100+'%';children[11].style.left=value/100+'%';
+                                        children[11].childNodes[1].innerHTML=this.value;" />
+                                <input class="input2" type="range" tabindex="0" value="@ViewBag.MaxValue" max="10000" min="0" step="1" oninput="
+                                      this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                                      var value=(10000/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(10000/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                                      var children = this.parentNode.childNodes[1].childNodes;
+                                      children[3].style.width=(100-value/100)+'%';
+                                      children[5].style.right=(100-value/100)+'%';
+                                      children[9].style.left=value/100+'%';children[13].style.left=value/100+'%';
+                                      children[13].childNodes[1].innerHTML=this.value;" />
+                                <input class="hiddeninput" type="hidden" name="name" value="@ViewBag.CategoryId" />
+                                <input class="hiddeninput2" type="hidden" name="name" value="@ViewBag.Childid" />
+                                <input class="hiddeninput3" type="hidden" name="name" value="@ViewBag.BrendId" />
+
                             </div>
                         </div>
-
                     </li>
                 </ul>
             </div>
@@ -125,14 +141,16 @@
             @foreach (Product item in Model.Products)
             {
                 <div class="productcard" style="position:relative;width:32%">
-                    <a style="
+                    <a class="fav"
+                    style="
                     position: absolute;
                     top: 10px;
                     right: 15px;
                     z-index: 100;
                     color: #6D757A;
                     width:auto !important;"
-                       asp-action="AddToFavorite" asp-route-id="@item.Id"> <i class="far fa-heart"></i></a>
+                    
+                     asp-controller="Home" asp-action="AddToFavorite" asp-route-id="@item.Id" > <i class="far fa-heart"></i></a>
                     <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
                     <p>@item.Name</p>
                     <div class="pricecontainer">
@@ -151,7 +169,7 @@
                     ">
                             Məhsula bax
                         </a>
-                        <a asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                        <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
                             Karta əlavə et
                         </a>
                     </div>
@@ -165,4 +183,3 @@
         <button class="loadmore">Daha çox</button>
     </div>
 </div>
-
