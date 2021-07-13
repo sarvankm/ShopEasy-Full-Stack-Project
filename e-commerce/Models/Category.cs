@@ -15,11 +15,11 @@ namespace e_commerce.Models
         public string Name { get; set; }
         public string Image { get; set; }
         public string ClassName { get; set; }
-        public bool IsMain { get; set; }
         public bool IsDeleted { get; set; }
-        [NotMapped]
-        public IFormFile Photo { get; set; }
+        [NotMapped,Required]
+        public IFormFile File { get; set; }
         public ICollection<Product> Products { get; set; }
         public virtual ICollection<CategoryChild> CategoryChild { get; set; }
+
     }
 }

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Color>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name of Color
+                                </th>
+                                <th>
+                                    Code of Color
+                                </th>
+                                <th>
+                                    IsDeleted
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Color item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @item.ColorCode
+                                    </td>
+                                    <td>
+                                        @if (item.IsDeleted == true)
+                                        {
+                                            <i class="mdi mdi-check" style="font-size: 30px; color: #71C016;"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="mdi mdi-close" style="font-size: 30px; color: #FF4747;"></i>
+
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.IsDeleted != true)
+                                        {
+                                            <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">
+                                                <i class="mdi mdi-open-in-new"></i>
+                                            </a>
+                                            <a class="btn btn-warning" asp-action="Update" asp-route-id="@item.Id">
+                                                <i class="mdi mdi-pencil"></i>
+                                            </a>
+                                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                                                <i class="mdi mdi-delete"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

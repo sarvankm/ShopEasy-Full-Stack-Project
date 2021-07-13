@@ -74,6 +74,13 @@ $(".input2").mouseup(function () {
     }
 })
 
-$(".fav").on("click",function () {
-    document.querySelector(".numberofproduct").innerHTML = +(document.querySelector(".numberofproduct").innerHTML) + 1;
+$(".fav").on("click", function () {
+    this.style.color = "red";
+    var products = document.querySelectorAll(".favorite")
+
+        if (products[i].children[2].innerHTML != this.nextElementSibling.nextElementSibling.innerHTML) {
+            document.querySelector(".numberofproduct").innerHTML = +(document.querySelector(".numberofproduct").innerHTML) + 1;
+
+        }
+
 })

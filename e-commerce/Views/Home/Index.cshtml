@@ -10,11 +10,23 @@
             <div class="carousel-inner">
                 @foreach (Slider item in Model.Sliders)
                 {
-                    <div class="carousel-item @item.ClassName">
-                        <a href="@item.Url">
-                            <img src="~/img/@item.Image" class="d-block w-100" alt="..." />
-                        </a>
-                    </div>
+                    if (item.IsActive == true)
+                    {
+                        <div class="carousel-item active">
+                            <a href="@item.Url">
+                                <img src="~/img/@item.Image" class="d-block w-100" alt="..." />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <a href="@item.Url">
+                                <img src="~/img/@item.Image" class="d-block w-100" alt="..." />
+                            </a>
+                        </div>
+                    }
+
                 }
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -57,6 +69,7 @@
         {
             <div class="productcard" style="position:relative;margin-top:34px">
                 <a
+                   class="fav"
                    style="
                     position: absolute;
                     top: 10px;

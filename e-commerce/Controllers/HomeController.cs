@@ -31,7 +31,7 @@ namespace e_commerce.Controllers
             return View(new HomeVM { 
                 Sliders=_db.Sliders,
                 Categories=_db.Categories,
-                Products=_db.Products.Include(p=>p.Images).Take(count)
+                Products=_db.Products.Include(p=>p.Images).OrderByDescending(p=>p.Id).Take(count)
             });
         }
         public IActionResult Load(int skip)

@@ -28,7 +28,7 @@ namespace e_commerce.Controllers
                 ViewBag.DefaultChild = _db.CategoryChilds.FirstOrDefault(p => p.Name == "Smartfonlar").Name;
                 CategoryVM categoryVM = new CategoryVM
                 {
-                    Products = _db.Products.Where(p => p.CategoryChild.Name == "Smartfonlar" && p.CategoryId == id && p.Price >= minvalue && p.Price <= maxvalue).Include(p => p.Images).Take(9),
+                    Products = _db.Products.Where(p => p.CategoryChild.Name == "Smartfonlar" && p.CategoryId == id && p.Price >= minvalue && p.Price <= maxvalue).OrderByDescending(p => p.Id).Include(p => p.Images).Take(9),
                     CategoryChildren = _db.CategoryChilds.Where(p => p.CategoryId == id).Include(c => c.Products).Include(p => p.Brends),
                     Brends = _db.Brends.Where(p => p.CategoryChild.CategoryId == id)
                 };
@@ -41,7 +41,7 @@ namespace e_commerce.Controllers
                 ViewBag.Childid = childid;
                 return View(new CategoryVM
                 {
-                    Products = _db.Products.Where(p => p.CategoryChildId == childid && p.Price >= minvalue && p.Price <= maxvalue).Include(p => p.Images).Take(9),
+                    Products = _db.Products.Where(p => p.CategoryChildId == childid && p.Price >= minvalue && p.Price <= maxvalue).OrderByDescending(p => p.Id).Include(p => p.Images).Take(9),
                     CategoryChildren = _db.CategoryChilds.Where(p => p.CategoryId == id).Include(c => c.Products).Include(p => p.Brends),
                     Brends = _db.Brends.Where(p => p.CategoryChildId == childid)
                 });
@@ -54,7 +54,7 @@ namespace e_commerce.Controllers
                 ViewBag.BrendId = brendid;
                 return View(new CategoryVM
                 {
-                    Products = _db.Products.Where(p => p.BrendId == brendid && p.Price >= minvalue && p.Price <= maxvalue).Include(p => p.Images).Take(9),
+                    Products = _db.Products.Where(p => p.BrendId == brendid && p.Price >= minvalue && p.Price <= maxvalue).OrderByDescending(p => p.Id).Include(p => p.Images).Take(9),
                     CategoryChildren = _db.CategoryChilds.Where(p => p.CategoryId == id).Include(c => c.Products).Include(p => p.Brends),
                     Brends = _db.Brends.Where(p => p.CategoryChildId == childid)
                 });

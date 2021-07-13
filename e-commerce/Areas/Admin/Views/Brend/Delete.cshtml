@@ -1,0 +1,67 @@
+﻿@model Brend
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name of Brend
+                                </th>
+                                <th>
+                                    SubCategory
+                                </th>
+                                <th>
+                                    IsDeleted
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Model.Name
+                                </td>
+                                <td>
+                                    @Model.CategoryChild.Name
+                                </td>
+                                <td>
+                                    @if (Model.IsDeleted == true)
+                                    {
+                                        <i class="mdi mdi-check" style="font-size: 30px; color: #71C016;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="mdi mdi-close" style="font-size: 30px; color: #FF4747;"></i>
+
+                                    }
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <form class="forms-sample" method="post" enctype="multipart/form-data" style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-danger mr-2">
+                    <i class="mdi mdi-delete"></i>
+                </button>
+                <a class="btn btn-primary" asp-controller="Brend" asp-action="Index">
+                    <i class="mdi mdi-close"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
