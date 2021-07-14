@@ -49,7 +49,7 @@ namespace e_commerce.Areas.Admin.Controllers
 
             brend.CategoryChildId = (int)CategoryChildId;
 
-            await _db.AddAsync(brend);
+            await _db.Brends.AddAsync(brend);
 
             await _db.SaveChangesAsync();
 
@@ -90,7 +90,7 @@ namespace e_commerce.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
-            Brend brend = await _db.Brends.FirstOrDefaultAsync(c => c.IsDeleted == false && c.Id == id);
+            Brend brend = await _db.Brends.Include(b=>b.CategoryChild).FirstOrDefaultAsync(c => c.IsDeleted == false && c.Id == id);
             if (brend == null) return NotFound();
             return View(brend);
         }

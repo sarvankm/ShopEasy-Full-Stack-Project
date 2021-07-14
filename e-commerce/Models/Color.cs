@@ -11,7 +11,6 @@ namespace e_commerce.Models
         public string Name { get; set; }
         public string ColorCode { get; set; }
         public bool IsDeleted { get; set; }
-        public ICollection<ProductColor> ProductColorImages { get; set; }
-
+        public ICollection<ProductColor> ProductColors { get; set; }
     }
 }

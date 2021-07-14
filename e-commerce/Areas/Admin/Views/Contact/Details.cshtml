@@ -1,0 +1,74 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card" style="margin-bottom:0">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Branch
+                                </th>
+                                <th>
+                                    Contact Number
+                                </th>
+                                <th>
+                                    Contact Email
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+                                <th>
+                                    IsDeleted
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Model.Branch
+                                </td>
+                                <td>
+                                    @Model.ContactNumber
+                                </td>
+                                <td>
+                                    @Model.ContactEmail
+                                </td>
+                                <td>
+                                    @Model.ContactLocation
+                                </td>
+                                <td>
+                                    @if (Model.IsDeleted == true)
+                                    {
+                                        <i class="mdi mdi-check" style="font-size: 30px; color: #71C016;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="mdi mdi-close" style="font-size: 30px; color: #FF4747;"></i>
+
+                                    }
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card" style="display:flex;align-items:center">
+            <a class="btn btn-rounded btn-primary" asp-controller="Contact" asp-action="Index"><i class="mdi mdi-keyboard-backspace"></i></a>
+        </div>
+    </div>
+</div>
+
+

@@ -16,7 +16,7 @@ namespace e_commerce.Models
         public string TypeValue { get; set; }
         public string OSForView { get; set; }
         public string OSValue { get; set; }
-
+        public bool IsDeleted { get; set; }
         public ICollection<Product> Products { get; set; }
 
     }

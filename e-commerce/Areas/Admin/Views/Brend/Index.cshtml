@@ -48,9 +48,6 @@
                                     <td>
                                         @if (item.IsDeleted != true)
                                         {
-                                            <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">
-                                                <i class="mdi mdi-open-in-new"></i>
-                                            </a>
                                             <a class="btn btn-warning" asp-action="Update" asp-route-id="@item.Id">
                                                 <i class="mdi mdi-pencil"></i>
                                             </a>

@@ -1,0 +1,47 @@
+﻿@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="login-register">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>QEYDİYYAT</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <input type="text" placeholder="İstifadəçi adı" />
+                <input type="email" placeholder="Elektron poçt ünvanı" />
+                <input type="password" placeholder="Şifrə" />
+                <input type="password" placeholder="Şifrənizi təsdiq edin" />
+
+                <button>Hesab yaradın</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Giriş</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <input type="email" placeholder="Elektron poçt ünvanı" />
+                <input type="password" placeholder="Şifrə" />
+                <button>Daxil ol</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <button class="ghost" id="signIn">Daxil ol</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <button class="ghost" id="signUp">Qeydiyyat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

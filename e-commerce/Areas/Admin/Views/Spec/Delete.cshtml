@@ -1,0 +1,78 @@
+﻿@model Specs
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card" style="margin-bottom:0">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Producer
+                                </th>
+                                <th>
+                                    Production Year
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th>
+                                    OS
+                                </th>
+                                <th>
+                                    IsDeleted
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Model.ProducerValue
+                                </td>
+                                <td>
+                                    @Model.ProductionYearValue
+                                </td>
+                                <td>
+                                    @Model.TypeValue
+                                </td>
+                                <td>
+                                    @Model.OSValue
+                                </td>
+                                <td>
+                                    @if (Model.IsDeleted == true)
+                                    {
+                                        <i class="mdi mdi-check" style="font-size: 30px; color: #71C016;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="mdi mdi-close" style="font-size: 30px; color: #FF4747;"></i>
+
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <form class="forms-sample" method="post" enctype="multipart/form-data" style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-danger mr-2">
+                    <i class="mdi mdi-delete"></i>
+                </button>
+                <a class="btn btn-primary" asp-controller="Slider" asp-action="Index">
+                    <i class="mdi mdi-close"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

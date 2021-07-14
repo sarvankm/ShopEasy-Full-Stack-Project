@@ -1,0 +1,65 @@
+﻿@model Image
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card" style="margin-bottom:0">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Image
+                                </th>
+                                <th>
+                                    Product
+                                </th>
+                                <th>
+                                    IsDeleted
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="~/img/@Model.ImageName" onerror="this.onerror=null;this.src='/img/deleted.png'" />
+                                </td>
+                                <td>
+                                    @Model.Product.Name
+                                </td>
+                                <td>
+                                    @if (Model.IsDeleted == true)
+                                    {
+                                        <i class="mdi mdi-check" style="font-size: 30px; color: #71C016;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="mdi mdi-close" style="font-size: 30px; color: #FF4747;"></i>
+
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <form class="forms-sample" method="post" enctype="multipart/form-data" style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-danger mr-2">
+                    <i class="mdi mdi-delete"></i>
+                </button>
+                <a class="btn btn-primary" asp-controller="Image" asp-action="Index">
+                    <i class="mdi mdi-close"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
