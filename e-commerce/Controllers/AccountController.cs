@@ -2,6 +2,7 @@
 using e_commerce.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,67 +21,95 @@ namespace e_commerce.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
-        public IActionResult Login()
+        public IActionResult Login(RegisterVM register)
         {
-            return View();
+            ViewBag.Val = TempData["Validation"];
+            AccountVM accountVM = new AccountVM { RegisterVM = register };
+            return View(accountVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Register(RegisterVM register)
+        public async Task<IActionResult> Register(RegisterVM registerVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return RedirectToAction("Login",new AccountVM { RegisterVM = registerVM });
 
             User user = new User
             {
-                UserName = register.UserName,
-                FullName = register.FullName,
-                Email = register.Email
+                UserName = registerVM.UserName,
+                FullName = registerVM.FullName,
+                Email = registerVM.Email
             };
 
-            IdentityResult identityResult = await _userManager.CreateAsync(user, register.Password);
+            IdentityResult identityResult = await _userManager.CreateAsync(user, registerVM.Password);
             if (!identityResult.Succeeded)
             {
+                
                 foreach (var error in identityResult.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    if (error.Code == "DuplicateUserName")
+                    {
+                        TempData["Validation"] = "Daxil etdiyiniz istifadəçi adı mövcuddur.";
+                        break;
+                    }
+                    if (error.Code == "PasswordRequiresUpper")
+                    {
+                        TempData["Validation"] = "Parolda ən az 1 böyük hərf olmalıdır.";
+                        break;
+                    }
+                    if (error.Code  == "PasswordTooShort")
+                    {
+                        TempData["Validation"] = "Parolda ən az 8 xarakter olmalıdır.";
+                        break;
+                    }
+                    if (error.Code == "PasswordRequiresNonAlphanumeric")
+                    {
+                        TempData["Validation"] = "Parolda ən az 1 simvol olmalıdır.";
+                        break;
+                    }
+                    
                 }
-                return View();
+                RegisterVM register = new RegisterVM
+                {
+                    FullName = registerVM.FullName,
+                    UserName = registerVM.UserName,
+                    Email = registerVM.Email
+                };
+                return RedirectToAction("Login", register);
             }
             await _userManager.AddToRoleAsync(user, "User");
             await _signInManager.SignInAsync(user, true);
 
-            return RedirectToAction("Index", "Home");
-        }
 
+            return RedirectToAction("Index","Home");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            if (!ModelState.IsValid) return View(loginVM);
+            if (!ModelState.IsValid) return View(new AccountVM { LoginVM = loginVM });
             User user = await _userManager.FindByEmailAsync(loginVM.Email);
             if (user == null)
             {
-                ModelState.AddModelError("", "Email Or Password Is Wrong!");
-                return View(loginVM);
+                ModelState.AddModelError("", "Email və ya şifrə yanlışdır!");
+                return View(new AccountVM {LoginVM=loginVM});
             }
 
             if (user.IsDeleted)
             {
-                ModelState.AddModelError("", "Your Account Is Blocked!");
-                return View(loginVM);
+                ModelState.AddModelError("", "Hesabınız bloklandı!");
+                return View(new AccountVM { LoginVM = loginVM });
             }
 
-            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.RemindMe, true);
+            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(user, loginVM.Password, true, true);
             if (signInResult.IsLockedOut)
             {
-                ModelState.AddModelError("", "Your Account Is Lock Out!");
-                return View(loginVM);
+                ModelState.AddModelError("", "Hesabınız kilidlənib!");
+                return View(new AccountVM { LoginVM = loginVM });
             }
             if (!signInResult.Succeeded)
             {
-                ModelState.AddModelError("", "Email Or Password Is Wrong!");
-                return View(loginVM);
+                ModelState.AddModelError("", "Email və ya şifrə yanlışdır!");
+                return View(new AccountVM { LoginVM = loginVM });
             }
 
             var role = (await _userManager.GetRolesAsync(user))[0];
@@ -88,15 +117,10 @@ namespace e_commerce.Controllers
             {
                 return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
             }
-            if (role == "Teacher")
+            if (role == "Moderator")
             {
-                return RedirectToAction("Index", "Course", new { area = "Admin" });
+                return RedirectToAction("Index", "ContactForm", new { area = "Admin" });
             }
-            if (role == "Speaker")
-            {
-                return RedirectToAction("Index", "Event", new { area = "Admin" });
-            }
-
             return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> Logout()
@@ -109,10 +133,8 @@ namespace e_commerce.Controllers
         {
             if (!await _roleManager.RoleExistsAsync("Admin"))
                 await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
-            if (!await _roleManager.RoleExistsAsync("Teacher"))
-                await _roleManager.CreateAsync(new IdentityRole { Name = "Teacher" });
-            if (!await _roleManager.RoleExistsAsync("Speaker"))
-                await _roleManager.CreateAsync(new IdentityRole { Name = "Speaker" });
+            if (!await _roleManager.RoleExistsAsync("Moderator"))
+                await _roleManager.CreateAsync(new IdentityRole { Name = "Moderator" });
             if (!await _roleManager.RoleExistsAsync("User"))
                 await _roleManager.CreateAsync(new IdentityRole { Name = "User" });
         }

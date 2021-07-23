@@ -11,10 +11,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using FrontToBack.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace e_commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
 
     public class SliderController : Controller
     {
@@ -28,7 +30,7 @@ namespace e_commerce.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_db.Sliders);
+            return View(_db.Sliders.OrderByDescending(p => p.Id));
         }
         public IActionResult Create()
         {

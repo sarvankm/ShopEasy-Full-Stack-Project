@@ -1,4 +1,4 @@
-$(".like-btn").on("click", function () {
+$(document).on("click", ".like-btn", function () {
   $(this).toggleClass("is-active");
 });
 $(".minus-btn").on("click", function (e) {

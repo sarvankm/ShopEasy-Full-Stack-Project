@@ -8,11 +8,9 @@ namespace e_commerce.ViewModels
 {
     public class LoginVM
     {
-        [Required, EmailAddress]
+        [Required(ErrorMessage = "Email adresinizi daxil etməlisiniz."), EmailAddress(ErrorMessage = "Zəhmət olmasa, düzgün elektron poçt daxil edin.")]
         public string Email { get; set; }
-        [Required, DataType(DataType.Password)]
+        [Required(ErrorMessage = "Şifrənizi daxil etməlisiniz."), DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
-        public bool RemindMe { get; set; }
     }
 }

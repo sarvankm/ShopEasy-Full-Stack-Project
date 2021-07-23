@@ -15,6 +15,8 @@ namespace e_commerce.Models
         public bool IsDeleted { get; set; }
         [NotMapped,Required]
         public IFormFile File { get; set; }
+        [NotMapped, Required(ErrorMessage ="You must import multiple image.")]
+        public IFormFile[] Files { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
 

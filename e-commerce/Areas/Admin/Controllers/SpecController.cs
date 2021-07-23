@@ -1,5 +1,6 @@
 ﻿using e_commerce.Data;
 using e_commerce.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 namespace e_commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Moderator")]
+
     public class SpecController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -19,7 +22,7 @@ namespace e_commerce.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_db.Specs);
+            return View(_db.Specs.OrderByDescending(p => p.Id));
         }
         public IActionResult Create()
         {
@@ -38,7 +41,10 @@ namespace e_commerce.Areas.Admin.Controllers
                 ModelState.AddModelError("", "This specialities already exist!");
                 return View();
             }
-
+            specs.ProducerForView = "İstehsalçı";
+            specs.ProductionYearForView = "Istehsal ili";
+            specs.TypeForView = "Növ";
+            specs.OSForView = "Əməliyyat sistemi";
             await _db.Specs.AddAsync(specs);
 
             await _db.SaveChangesAsync();

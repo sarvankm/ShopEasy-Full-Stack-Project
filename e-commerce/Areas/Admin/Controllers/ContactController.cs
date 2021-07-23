@@ -1,5 +1,6 @@
 ﻿using e_commerce.Data;
 using e_commerce.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 namespace e_commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Moderator")]
+
     public class ContactController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -20,7 +23,7 @@ namespace e_commerce.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_db.Contacts);
+            return View(_db.Contacts.OrderByDescending(p => p.Id));
         }
         public async Task<IActionResult> Details(int? id)
         {

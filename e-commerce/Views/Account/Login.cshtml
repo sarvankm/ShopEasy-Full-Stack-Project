@@ -1,36 +1,53 @@
-﻿@model LoginVM
+﻿@model AccountVM
 @{
     ViewData["Title"] = "Login";
 }
 <div class="login-register">
-    <div class="container" id="container">
+    <div class="container" id="container" style="min-height:580px">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form method="post" asp-action="Register" onsubmit="">
                 <h1>QEYDİYYAT</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <input type="text" placeholder="İstifadəçi adı" />
-                <input type="email" placeholder="Elektron poçt ünvanı" />
-                <input type="password" placeholder="Şifrə" />
-                <input type="password" placeholder="Şifrənizi təsdiq edin" />
+                <div class="text-danger">
+                    @if (ViewBag.Val != null)
+                    {
+                        @ViewBag.Val
+                    }
 
-                <button>Hesab yaradın</button>
+                </div>
+                <input asp-for="@Model.RegisterVM.FullName" placeholder="Ad familya" />
+                <span class="text-danger" asp-validation-for="@Model.RegisterVM.FullName"></span>
+                <input asp-for="@Model.RegisterVM.UserName" placeholder="İstifadəçi adı" />
+                <span class="text-danger" asp-validation-for="@Model.RegisterVM.UserName"></span>
+                <input asp-for="@Model.RegisterVM.Email" placeholder="Elektron poçt ünvanı" />
+                <span class="text-danger" asp-validation-for="@Model.RegisterVM.Email"></span>
+                <input asp-for="@Model.RegisterVM.Password" placeholder="Şifrə" />
+                <span class="text-danger" asp-validation-for="@Model.RegisterVM.Password"></span>
+                <input asp-for="@Model.RegisterVM.ConfirmPassword" id="message" placeholder="Şifrənizi təsdiq edin" />
+                <span class="text-danger" asp-validation-for="@Model.RegisterVM.ConfirmPassword"></span>
+
+                <button type="submit">Hesab yaradın</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form method="post" asp-action="Login">
                 <h1>Giriş</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <input type="email" placeholder="Elektron poçt ünvanı" />
-                <input type="password" placeholder="Şifrə" />
-                <button>Daxil ol</button>
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <input asp-for="@Model.LoginVM.Email" placeholder="Elektron poçt ünvanı" />
+                <span class="text-danger" asp-validation-for="@Model.LoginVM.Email"></span>
+                <input asp-for="@Model.LoginVM.Password" placeholder="Şifrə" />
+                <span class="text-danger" asp-validation-for="@Model.LoginVM.Password"></span>
+
+                <button type="submit" style="margin-top:10px;">Daxil ol</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -45,3 +62,30 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        function verifyPassword() {
+            var pw = document.getElementById("RegisterVM.Password").value;
+            var lowerCaseLetters = /[a-z]/g;
+            var upperCaseLetters = /[A-Z]/g;
+
+            //minimum password length validation  
+            if (pw.length < 8) {
+                document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+                return false;
+            }
+            if (pw.match(lowerCaseLetters)) {
+                document.getElementById("message").innerHTML = "**Password length must be have lowercase";
+            }
+            if (pw.match(upperCaseLetters)) {
+                document.getElementById("message").innerHTML = "**Password length must be have uppercase";
+            }
+            else {
+                document.getElementById("message").style.display = "none";
+
+            }
+            }
+        }  
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

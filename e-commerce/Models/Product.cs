@@ -12,6 +12,7 @@ namespace e_commerce.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
+        public bool IsFavorite { get; set; }
         public bool IsDeleted { get; set; }
         [ForeignKey("SpecsId")]
         public int? SpecsId { get; set; }

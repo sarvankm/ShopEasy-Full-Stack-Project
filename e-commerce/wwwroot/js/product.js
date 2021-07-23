@@ -14,5 +14,4 @@
 function sweetalert() {
     Swal.fire("Təbriklər!", "Sifarişiniz uğurla nəticələndi!", "success");
     document.querySelector(".swal2-confirm.swal2-styled").innerHTML = "Bitdi";
-
 }

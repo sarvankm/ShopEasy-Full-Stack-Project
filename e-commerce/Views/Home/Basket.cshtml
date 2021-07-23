@@ -1,7 +1,6 @@
 ﻿@model List<BasketVM>
 @{
     ViewData["Title"] = "Basket";
-
 }
 <!-- shopping card start -->
 <div class="shopping-card-container">
@@ -12,46 +11,51 @@
         </div>
         @foreach (BasketVM item in Model)
         {
+            <input class="id" type="hidden" name="name" value="@item.Id" />
             <div class="item shopping" style="cursor:auto">
                 <div class="buttons">
 
                     <a asp-action="RemoveProduct" asp-route-id="@item.Id"><span class="delete-btn" onclick="myfunc()"></span></a>
-
-                    <span class="like-btn">
-                    </span>
+                    @if (item.IsFavorite == true)
+                    {
+                        <a class="fav" asp-action="RemoveFavoriteProduct" asp-route-id="@item.Id"><span class="like-btn is-active"></span></a>
+                    }
+                    else
+                    {
+                        <a class="non-fav" asp-action="AddToFavorite" asp-route-id="@item.Id"><span class="like-btn"></span></a>
+                    }
                 </div>
 
                 <div class="image">
-                    <img src="~/img/@item.Image" alt="" style=" width: 120px; margin-top: -15px; height: 109px;" />
+                    <img src="~/img/@item.Image" alt="" style=" width: 100px; margin-top: -15px; height: 109px;" />
                 </div>
 
                 <div class="description">
                     <span class="name">@item.Name</span>
-                    <span>White</span>
                 </div>
 
                 <div class="quantity" style="display:flex;justify-content:center;">
 
                     <button class="plus-btn" name="button"
                             style="
-                        background-image: url(../img/plus.svg);
-                        background-size: 10px;
-                        background-repeat: no-repeat;
-                        background-position:center;"
+                            background-image: url(../img/plus.svg);
+                            background-size: 10px;
+                            background-repeat: no-repeat;
+                            background-position:center;"
                             onclick="increase()">
                     </button>
                     <p class="countproduct" style="padding:3px 10px"></p>
                     <button class="minus-btn" type="button" name="button"
                             style="
-                        background-image: url(../img/minus.svg);
-                        background-size: 10px;
-                        background-repeat: no-repeat;
-                        background-position:center;"
+                            background-image: url(../img/minus.svg);
+                            background-size: 10px;
+                            background-repeat: no-repeat;
+                            background-position:center;"
                             onclick="decrease()">
                     </button>
                 </div>
 
-                <div class="total-price"><p class="price">@item.Price</p>  AZN</div>
+                <div  class="d-flex total-price"><p class="price">@item.Price</p> <p style="margin-left:5px">AZN</p> </div>
             </div>
         }
     </div>
@@ -70,12 +74,19 @@
                     <p class="totalamount" style=" padding: 10px 0px;"></p>
                     <p style="padding-left: 5px;">Azn</p>
                 </div>
-
-
             </div>
         </div>
-        <button>Alış verişə davam et</button>
-        <button class="finish-order">Sifarişi Tamamla</button>
+        <a asp-action="Index">Alış verişə davam et</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a class="finish-order" id="finish-order" style="cursor:pointer">Sifarişi Tamamla</a>
+
+        }
+        else
+        {
+            <a class="finish-order" asp-controller="Account" asp-action="Login">Sifarişi Tamamla</a>
+
+        }
     </div>
 
 </div>
@@ -92,6 +103,7 @@
         totalamount.innerHTML = 0;
 
         if (!JSON.parse(localStorage.getItem("basket"))) {
+
             const arr = [];
             for (let i = 0; i < name.length; i++) {
                 const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
@@ -167,20 +179,22 @@
             }
         };
         function decrease() {
-            const basket = JSON.parse(localStorage.getItem("basket"));
-            for (var i = 0; i < basket.length; i++) {
-                if (event.target.parentElement.parentElement.children[2].children[0].innerHTML == basket[i].productName) {
-                    event.target.previousElementSibling.innerHTML = (parseInt(basket[i].productCount) - 1).toString();
-                    totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) - parseInt(basket[i].productPrice);
-                    localStorage.setItem("totalamount", totalamount.innerHTML)
+            if (event.target.previousElementSibling.innerHTML > 1) {
+                const basket = JSON.parse(localStorage.getItem("basket"));
+                for (var i = 0; i < basket.length; i++) {
+                    if (event.target.parentElement.parentElement.children[2].children[0].innerHTML == basket[i].productName) {
+                        event.target.previousElementSibling.innerHTML = (parseInt(basket[i].productCount) - 1).toString();
+                        totalamount.innerHTML = parseInt(localStorage.getItem("totalamount")) - parseInt(basket[i].productPrice);
+                        localStorage.setItem("totalamount", totalamount.innerHTML)
+                    }
                 }
-            }
 
-            const arr = [];
-            for (let i = 0; i < name.length; i++) {
-                const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
-                arr.push(obj);
-                localStorage.setItem("basket", JSON.stringify(arr));
+                const arr = [];
+                for (let i = 0; i < name.length; i++) {
+                    const obj = { productName: name[i].textContent, productCount: count[i].innerHTML, productPrice: price[i].innerHTML };
+                    arr.push(obj);
+                    localStorage.setItem("basket", JSON.stringify(arr));
+                }
             }
         };
         function myfunc() {
@@ -197,5 +211,31 @@
             }
 
         }
+        $(document).on("click", "#finish-order", function (e) {
+            const arr = [];
+            const ids = [];
+            const counts = [];
+            const idsProduct = document.querySelectorAll(".id")
+            const countsProduct = document.querySelectorAll(".countproduct")
+            for (var i = 0; i < idsProduct.length; i++) {
+                const obj1 = { Id: idsProduct[i].value }
+                const obj2 = { count: countsProduct[i].innerHTML }
+                ids.push(obj1)
+                counts.push(obj2)
+            }
+            arr.push(ids)
+            arr.push(counts)
+            console.log()
+            $.ajax({
+                url: 'BuyFromBasket',
+                data: { ids: JSON.stringify(ids), counts: JSON.stringify(counts) },
+                type: 'Get',
+                success: function () {
+                    Swal.fire("Təbriklər!", "Sifarişiniz uğurla nəticələndi!", "success");
+                    document.querySelector(".swal2-confirm.swal2-styled").innerHTML = "Bitdi";
+                    setTimeout(function () { location.reload() }, 2000);
+                }
+            })
+        })
     </script>
 }

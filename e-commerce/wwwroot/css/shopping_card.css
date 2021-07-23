@@ -160,25 +160,34 @@ input:focus {
   .shopping-card-container .title-card {
     font-size: 25px;
     font-weight: bold; }
-  .shopping-card-container .amountcontainer {
-    width: 25%;
-    padding: 0 10px; }
-    .shopping-card-container .amountcontainer button {
-      width: 100%;
-      padding: 15px 0;
-      font-size: 18px;
-      border: 1px solid #d7d7d7;
-      border-radius: 40px;
-      margin-top: 20px; }
+    .shopping-card-container .amountcontainer {
+        width: 25%;
+        height:330px;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+        .shopping-card-container .amountcontainer a {
+            width: 100%;
+            color: #86939E;
+            padding: 15px 69px;
+            font-size: 18px;
+            border: 1px solid #d7d7d7;
+            border-radius: 40px;
+        }
     .shopping-card-container .amountcontainer .finish-order {
-      background-color: #86939e;
-      border: 1px solid #86939e;
-      color: white; }
+        padding: 15px 84px;
+        background-color: #86939e;
+        border: 1px solid #86939e;
+        color: white;
+    }
     .shopping-card-container .amountcontainer .amount {
-      display: flex;
-      justify-content: space-between;
-      background: #86939e;
-      border-radius: 10px; }
+        display: flex;
+        justify-content: space-between;
+        background: #86939e;
+        border-radius: 10px;
+    }
       .shopping-card-container .amountcontainer .amount .titleamount {
         margin-top: 35px; }
         .shopping-card-container .amountcontainer .amount .titleamount p {

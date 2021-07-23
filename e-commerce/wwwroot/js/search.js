@@ -17,10 +17,6 @@
             })
     }
     if (search.length == 0) {
-
         $(".result ul li").remove();
-
     }
-    
- 
 })

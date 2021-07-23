@@ -22,25 +22,19 @@
             counter++;
         }
     </div>
-
-
     <!-- Right Column -->
     <div class="right-column">
-
         <!-- Product Description -->
         <div class="product-description">
             <span>@Model.Product.Category.Name</span>
             <h1>@Model.Product.Name</h1>
-
             <!-- Product Configuration -->
             <div class="product-configuration">
-
                 <!-- Product Color -->
                 <div class="product-color">
-                    <span>Color</span>
-
+                    <span>Rəng</span>
                     <div class="color-choose">
-                  
+
                         @foreach (ProductColor item in Model.ProductColors)
                         {
                             if (counter2 == 0)
@@ -70,9 +64,17 @@
             <div class="product-price">
                 <span>@Model.Product.Price AZN</span>
                 <div class="buttons">
-                    <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Product.Id" class="cart-btn">Karta əlavə et</a>
-                    <a onclick="sweetalert()" asp-controller="Home" asp-action="Buy" asp-route-id="@Model.Product.Id" class="cart-btn">Nəğd al</a>
+                    <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Product.Id" class="cart-btn addbasket">Karta əlavə et</a>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a  asp-controller="Home" asp-action="Buy" asp-route-id="@Model.Product.Id" class="cart-btn">Nəğd al</a>
 
+                    }
+                    else
+                    {
+                        <a onclick="sweetalert()" asp-controller="Home" asp-action="Buy" asp-route-id="@Model.Product.Id" class="cart-btn">Nəğd al</a>
+
+                    }
                 </div>
             </div>
         </div>
@@ -83,35 +85,35 @@
 </div>
 <div class="row">
 
-        <div class="col-lg-4 col-md-6 col-sm-12 pr-0">
-            <ul class="features-review-tabs submenuItems_params ">
+    <div class="col-lg-4 col-md-6 col-sm-12 pr-0">
+        <ul class="features-review-tabs submenuItems_params ">
+            <li class="line-gray">
+                @Model.Specs.ProducerForView
+            </li>
+            <li>
+                @Model.Specs.ProductionYearForView
+            </li>
+            @if (Model.Specs.OSForView != null)
+            {
                 <li class="line-gray">
-                    @Model.Specs.ProducerForView
+                    @Model.Specs.OSForView
                 </li>
                 <li>
-                    @Model.Specs.ProductionYearForView
+                    @Model.Specs.TypeForView
                 </li>
-                @if (Model.Specs.OSForView != null)
-                {
-                    <li class="line-gray">
-                        @Model.Specs.OSForView
-                    </li>
-                    <li>
-                        @Model.Specs.TypeForView
-                    </li>
-                }
-                else if (Model.Specs.OSForView == null)
-                {
-                    <li class="line-gray">
-                        @Model.Specs.TypeForView
-                    </li>
-                }
-              
+            }
+            else if (Model.Specs.OSForView == null)
+            {
+                <li class="line-gray">
+                    @Model.Specs.TypeForView
+                </li>
+            }
 
-            </ul>
-        </div>
 
- 
+        </ul>
+    </div>
+
+
     <div class="col-lg-8 col-md-6 col-sm-12 pl-0">
         <ul class="features-review-tabs submenuItems_params specs">
             <li class="line-gray">
@@ -135,9 +137,13 @@
                     @Model.Specs.TypeValue
                 </li>
             }
-          
+
 
         </ul>
     </div>
 </div>
+
+
+
+     
 

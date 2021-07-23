@@ -74,13 +74,15 @@ $(".input2").mouseup(function () {
     }
 })
 
-$(".fav").on("click", function () {
-    this.style.color = "red";
-    var products = document.querySelectorAll(".favorite")
-
-        if (products[i].children[2].innerHTML != this.nextElementSibling.nextElementSibling.innerHTML) {
-            document.querySelector(".numberofproduct").innerHTML = +(document.querySelector(".numberofproduct").innerHTML) + 1;
-
-        }
-
-})
+$(document).on("click", ".fav", function () {
+    $(this).removeClass("fav");
+    document.querySelector(".numberofproduct.fav").innerHTML = +document.querySelector(".numberofproduct.fav").innerHTML - 1;
+});
+$(document).on("click", ".non-fav", function () {
+    $(this).removeClass("non-fav")
+    document.querySelector(".numberofproduct.fav").innerHTML = +document.querySelector(".numberofproduct.fav").innerHTML + 1;
+});
+$(document).on("click", ".addbasket", function () {
+    $(this).removeClass("addbasket");
+    document.querySelector(".numberofproduct.basket").innerHTML = +document.querySelector(".numberofproduct.basket").innerHTML + 1;
+});

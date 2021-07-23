@@ -1,6 +1,7 @@
 ﻿@model HomeVM
 @{
     ViewData["Title"] = "Index";
+    int counter = 0;
 }
 
 
@@ -64,44 +65,111 @@
 <div class="productcontainer" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease-in-out"
      data-aos-once="true" data-aos-anchor-placement="top-center">
     <h3>YENİ MƏHSULLAR</h3>
-    <div class="forflex" id="productlist" style=" max-width: initial;">
+    <div class="forflex" id="productlist" style="justify-content:normal;max-width: initial;">
         @foreach (Product item in Model.Products)
         {
-            <div class="productcard" style="position:relative;margin-top:34px">
-                <a
-                   class="fav"
-                   style="
+            @if (counter == 0 || counter % 4 == 0)
+            {
+                counter++;
+                <div class="productcard" style="position:relative;margin-top:34px;">
+                    @if (item.IsFavorite == true)
+                    {
+                        <a class="fav"
+                           style="
                     position: absolute;
-                    top: 10px;
-                    right: 15px;
-                    z-index: 100;
-                    color: #6D757A;
-                    width:auto !important;"
-                   asp-action="AddToFavorite" asp-route-id="@item.Id"
-                   > <i class="far fa-heart"></i></a>
-                <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
-                <p>@item.Name</p>
-                <div class="pricecontainer">
-                    <p class="price">@item.Price</p>
-                    <p class="currency">AZN</p>
-                </div>
-                <div class="buttoncontainer">
-                    <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
-                       style="
-                width: auto !important;
-                padding: 5px 30px;
-                color: white;
-                border-radius: 20px;
-                background-color: #6D757A;
-                margin-bottom:10px
+                    top: -10px;
+                    right: -20px;
+                    z-index: 100;"
+                           asp-action="RemoveFavoriteProduct" asp-route-id="@item.Id"> <span class="like-btn is-active"></span></a>
+                    }
+                    else
+                    {
+                        <a class="non-fav"
+                           style="
+                    position: absolute;
+                    top: -10px;
+                    right: -20px;
+                    z-index: 100;"
+                           asp-action="AddToFavorite" asp-route-id="@item.Id"><span class="like-btn"></span></a>
+                    }
+
+
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
+                    <p>@item.Name</p>
+                    <div class="pricecontainer">
+                        <p class="price">@item.Price</p>
+                        <p class="currency">AZN</p>
+                    </div>
+                    <div class="buttoncontainer">
+                        <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
+                           style="
+                    width: auto !important;
+                    padding: 5px 30px;
+                    color: white;
+                    border-radius: 20px;
+                    background-color: #6D757A;
+                    margin-bottom:10px
                     ">
-                        Məhsula bax
-                    </a>
-                    <a asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
-                        Karta əlavə et
-                    </a>
+                            Məhsula bax
+                        </a>
+                        <a class="addbasket" asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                            Karta əlavə et
+                        </a>
+                    </div>
                 </div>
-            </div>
+
+            }
+            else
+            {
+                counter++;
+                <div class="productcard" style="position:relative;margin-top:34px;margin-left:33px">
+                    @if (item.IsFavorite == true)
+                    {
+                        <a class="fav"
+                           style="
+                    position: absolute;
+                    top: -10px;
+                    right: -20px;
+                    z-index: 100;"
+                           asp-action="RemoveFavoriteProduct" asp-route-id="@item.Id"> <span class="like-btn is-active"></span></a>
+                    }
+                    else
+                    {
+                        <a class="non-fav"
+                           style="
+                    position: absolute;
+                    top: -10px;
+                    right: -20px;
+                    z-index: 100;"
+                           asp-action="AddToFavorite" asp-route-id="@item.Id"><span class="like-btn"></span></a>
+                    }
+
+
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="~/img/@item.Images.FirstOrDefault(p=>p.ProductId==item.Id).ImageName" alt="" style="margin-top:30px" /></a>
+                    <p>@item.Name</p>
+                    <div class="pricecontainer">
+                        <p class="price">@item.Price</p>
+                        <p class="currency">AZN</p>
+                    </div>
+                    <div class="buttoncontainer">
+                        <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
+                           style="
+                    width: auto !important;
+                    padding: 5px 30px;
+                    color: white;
+                    border-radius: 20px;
+                    background-color: #6D757A;
+                    margin-bottom:10px
+                    ">
+                            Məhsula bax
+                        </a>
+                        <a class="addbasket" asp-action="AddToBasket" asp-route-id="@item.Id" style=" width: auto !important; border: 1px solid #6D757A; padding: 5px 25px; color: #6D757A; border-radius: 20px;margin-bottom:50px">
+                            Karta əlavə et
+                        </a>
+                    </div>
+                </div>
+
+            }
         }
 
 

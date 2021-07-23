@@ -29,7 +29,8 @@ namespace e_commerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                
+            options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddSession(options => {
@@ -40,11 +41,8 @@ namespace e_commerce
             {
                 options.Password.RequiredLength = 8;
                 options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireNonAlphanumeric = true;
 
-                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 options.Lockout.AllowedForNewUsers = true;
 

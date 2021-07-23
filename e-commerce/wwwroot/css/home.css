@@ -24,7 +24,9 @@ a {
 
 
 
-
+.mdi-logout:hover {
+    color: #A0C6E8 !important;
+}
 .secondcategorycontainer {
   max-width: 1270px;
   margin: 0 auto; }
@@ -101,8 +103,10 @@ a {
       font-size: 10px;
       margin-top: 6px; }
     .productcontainer .productcard img {
-      width: 100%;
-      transition: 0.6s ease-in-out; }
+        width: 100%;
+        padding: 25px;
+        transition: 0.6s ease-in-out;
+    }
     .productcontainer .productcard .buttoncontainer {
       display: flex;
       flex-direction: column;
@@ -189,6 +193,8 @@ input:focus {
         border-bottom:1px solid black;
         background:white;
         height:70px;
+        width:100%;
+        position:relative;
     }
     .result ul li a{
         display: flex;
@@ -202,7 +208,8 @@ input:focus {
             width: 5%;
         }
     .result .searchprice {
-        margin-inline-start: auto;
+        position:absolute;
+        right:0;
     }
     @media only screen and (max-width: 1300px) {
         .productcontainer, .secondcategorycontainer, .categorycontainer {

@@ -15,6 +15,14 @@
                 <i class="fab fa-linkedin-in p-2"></i>
                 <i class="fab fa-whatsapp p-2"></i>
             </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div style="width: 60%; display: flex; justify-content: flex-end; align-items: center;">
+                    <p style="margin-bottom:0">@User.Identity.Name</p>
+                    <a class="mdi-logout" asp-controller="Account" asp-action="Logout" style="color:white;margin-left:10px;">Hesabdan çıxış</a>
+                </div>
+            }
+
         </div>
     </div>
     <div class="secondpartheader">
@@ -72,25 +80,24 @@
                     </div>
                 </div>
             }
-
-
-
-
-
         </div>
 
         <div class="userinfo">
             <p>|</p>
-            <a asp-controller="Account" asp-action="Login">
-                <i class="far fa-user"></i>
-            </a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Account" asp-action="Login">
+                    <i class="far fa-user"></i>
+                </a>
+            }
+
             <a asp-controller="Home" asp-action="Favorite">
                 <i class="far fa-heart"></i>
-                <div class="numberofproduct">@ViewBag.Count[1]</div>
+                <div class="numberofproduct fav">@ViewBag.Count[1]</div>
             </a>
             <a asp-controller="Home" asp-action="Basket" class="basket">
                 <i class="fas fa-shopping-basket"></i>
-                <div class="numberofproduct">@ViewBag.Count[0]</div>
+                <div class="numberofproduct basket">@ViewBag.Count[0]</div>
             </a>
         </div>
 

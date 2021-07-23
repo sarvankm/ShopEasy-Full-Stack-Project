@@ -8,17 +8,15 @@ namespace e_commerce.ViewModels
 {
     public class RegisterVM
     {
-        [Required]
+        [Required(ErrorMessage = "Ad familyanı daxil etməlisiniz!")]
         public string FullName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "İstifadəçi adınızı daxil etməlisiniz!")]
         public string UserName { get; set; }
-        [Required, DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Email adresinizi daxil etməlisiniz!"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required, DataType(DataType.Password)]
+        [Required(ErrorMessage = "Şifrənizi daxil etməlisiniz!"), DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required, DataType(DataType.Password), Compare(nameof(Password))]
+        [Required(ErrorMessage = "Təkrar şifrənizi düzgün daxil etməlisiniz!"), DataType(DataType.Password), Compare(nameof(Password),ErrorMessage ="Təkrar şifrəniz yanlışdır.")]
         public string ConfirmPassword { get; set; }
-        [Required]
-        public bool IsAgree { get; set; }
     }
 }

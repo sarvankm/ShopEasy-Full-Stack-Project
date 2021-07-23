@@ -15,6 +15,11 @@
                         <input class="form-control" asp-for="Name">
                         <span class="text-danger" asp-validation-for="Name"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="Price"></label>
+                        <input class="form-control" asp-for="Price">
+                        <span class="text-danger" asp-validation-for="Price"></span>
+                    </div>
                     <div class="form-group" id="Category">
                         <select name="CategoryId">
                             @foreach (var category in ViewBag.CategoryList)
@@ -36,7 +41,7 @@
                             }
                         </select>
                     </div>
-                    <div class="form-group" id="Brand">
+                    <div class="form-group" id="Brend">
                         <select name="BrendId">
                             @foreach (var category in ViewBag.CategoryList)
                             {
@@ -60,13 +65,21 @@
                                     @specs.ProductionYearForView : @specs.ProductionYearValue |
                                     @specs.TypeForView :  @specs.TypeValue |
                                     @specs.OSForView : @specs.OSValue
-
-
-
-
                                 </option>
                             }
                         </select>
+                    </div>
+                    <div class="form-group" id="ProductColor">
+                        @foreach (var color in ViewBag.Color)
+                        {
+                            <label>@color.Name</label>
+                            <input type="checkbox" name="ids" value="@color.Id" />
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Images.FirstOrDefault().Files"></label>
+                        <input class="form-control" asp-for="@Model.Images.FirstOrDefault().Files" accept="image/*">
+                        <span class="text-danger" asp-validation-for="@Model.Images.FirstOrDefault().Files"></span>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Create</button>
                     <a class="btn btn-light" asp-controller="Product" asp-action="Index">Cancel</a>

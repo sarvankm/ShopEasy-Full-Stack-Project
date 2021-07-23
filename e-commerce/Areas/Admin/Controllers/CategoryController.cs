@@ -2,6 +2,7 @@
 using e_commerce.Extensions;
 using e_commerce.Models;
 using FrontToBack.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -14,6 +15,8 @@ using System.Threading.Tasks;
 namespace e_commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -26,7 +29,7 @@ namespace e_commerce.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_db.Categories);
+            return View(_db.Categories.OrderByDescending(p => p.Id).Include(p=>p.Products));
         }
         public IActionResult Create()
         {
